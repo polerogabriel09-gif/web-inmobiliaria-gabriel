@@ -171,6 +171,142 @@ body.dark .footer-row{border-color:var(--line)}
   body{padding-bottom:82px}
 }
 
+
+/* ===== INTERACCIONES + ANIMACIONES SUTILES ===== */
+.trust-action{
+  width:100%;
+  text-align:left;
+  color:inherit;
+  font:inherit;
+  cursor:pointer;
+  position:relative;
+  appearance:none;
+  -webkit-appearance:none;
+  transition:transform .24s ease,border-color .24s ease,background .24s ease,box-shadow .24s ease;
+}
+.trust-action:hover{
+  transform:translateY(-4px);
+  border-color:#2b6559;
+  background:#14211e;
+  box-shadow:0 12px 28px rgba(0,0,0,.22);
+}
+.trust-action:active{transform:translateY(-1px) scale(.995)}
+.trust-action:focus-visible{outline:2px solid #65d8bd;outline-offset:3px}
+.trust-action .ico{transition:transform .28s ease,background .28s ease}
+.trust-action:hover .ico{transform:scale(1.08) rotate(-2deg);background:#1d463c}
+.trust-arrow{
+  margin-left:auto;
+  color:#7bcab8;
+  font-size:20px;
+  opacity:.45;
+  transform:translateX(-4px);
+  transition:opacity .24s ease,transform .24s ease;
+}
+.trust-action:hover .trust-arrow{opacity:1;transform:translateX(2px)}
+
+.btn,.quick-card,.card,.media-tile,.plan-card,.amenity{
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,filter .25s ease;
+}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.035)}
+.quick-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(0,0,0,.18);border-color:#2c5f55}
+.media-tile:hover,.plan-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.20)}
+.media-tile img,.plan-preview img{transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .35s ease}
+.media-tile:hover img,.plan-card:hover .plan-preview img{transform:scale(1.025);filter:brightness(1.04)}
+
+.hero-copy{animation:heroTextIn .7s ease both}
+.hero-media{animation:heroMediaIn .8s .08s ease both}
+.hero-media img{transition:transform .8s ease}
+.hero-media:hover img{transform:scale(1.012)}
+@keyframes heroTextIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes heroMediaIn{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in-view{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.06s}
+.reveal[data-delay="2"]{transition-delay:.12s}
+.reveal[data-delay="3"]{transition-delay:.18s}
+.reveal[data-delay="4"]{transition-delay:.24s}
+
+.amount{transition:transform .2s ease,color .2s ease}
+.amount.quote-pop{transform:scale(1.025);color:#ffe08e}
+
+.map-card iframe{transition:filter .3s ease}
+.map-card:hover iframe{filter:saturate(1.08) contrast(1.02)}
+
+.modal.open .modal-card{animation:modalIn .28s ease both}
+.lightbox.open .lightbox-inner{animation:modalIn .24s ease both}
+@keyframes modalIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+
+/* ===== LOGOS WHATSAPP + MARCA ===== */
+.topbar .brand{
+  gap:12px;
+}
+.mark{
+  overflow:hidden;
+  background:linear-gradient(145deg,var(--brand),#1b6c61);
+}
+.mark img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  padding:4px;
+}
+.btn-whatsapp{
+  gap:10px;
+}
+.btn-whatsapp .wa-logo-text{
+  height:20px;
+  width:auto;
+  display:block;
+}
+.btn-whatsapp .wa-label{
+  display:none;
+}
+.bottom-wa-logo{
+  height:19px;
+  width:auto;
+  display:block;
+}
+.floating{
+  overflow:hidden;
+  padding:0;
+}
+.floating img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.mobile-actions .btn-whatsapp{
+  justify-content:center;
+}
+.mobile-actions .btn-whatsapp .wa-logo-text{
+  height:18px;
+}
+.hero-media .logo-mini img{
+  object-fit:contain;
+  background:rgba(4,8,8,.55);
+  padding:8px;
+}
+@media(max-width:640px){
+  .topbar .nav{
+    min-height:76px;
+  }
+  .btn-whatsapp .wa-logo-text{
+    height:18px;
+  }
+}
+
 </style>
 </head>
 <body class="dark">
@@ -179,7 +315,7 @@ body.dark .footer-row{border-color:var(--line)}
     <div class="brand"><div class="mark">GP</div><span>Gabriel Polero<small>Asesor inmobiliario</small></span></div>
     <div class="nav-actions">
       <button class="btn btn-ghost" onclick="sharePage()">↗ Compartir</button>
-      <a class="btn btn-whatsapp" id="topWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'top'})">💬 WhatsApp</a>
+      <a class="btn btn-whatsapp" id="topWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'top'})"><img class="wa-logo-text" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">WhatsApp</span></a>
     </div>
   </div>
   <div class="wrap project-switcher"><div class="chips" id="projectChips"></div></div>
@@ -201,10 +337,18 @@ body.dark .footer-row{border-color:var(--line)}
 </div></div></section>
 
 <section class="trust-strip"><div class="wrap"><div class="trust-grid" id="trustGrid">
-  <div class="trust-item"><div class="ico">📜</div><div><b>Escrituras</b><small>Información jurídica del proyecto</small></div></div>
-  <div class="trust-item"><div class="ico">💳</div><div><b>Financiamiento propio</b><small>Opciones según proyecto</small></div></div>
-  <div class="trust-item"><div class="ico">📍</div><div><b>Ubicación verificable</b><small>Acceso directo a Google Maps</small></div></div>
-  <div class="trust-item"><div class="ico">💬</div><div><b>Atención directa</b><small>Gabriel Polero · WhatsApp</small></div></div>
+  <button class="trust-item trust-action" type="button" onclick="trackEvent('trust_click',{item:'escrituras',project:projects[current].label});scrollToId('esencial')" aria-label="Ver información de escrituras">
+    <div class="ico">📜</div><div><b>Escrituras</b><small>Ver información del proyecto</small></div><span class="trust-arrow">→</span>
+  </button>
+  <button class="trust-item trust-action" type="button" onclick="trackEvent('trust_click',{item:'financiamiento',project:projects[current].label});scrollToId('precios')" aria-label="Ver financiamiento">
+    <div class="ico">💳</div><div><b>Financiamiento propio</b><small>Ver precios, plazos y cuotas</small></div><span class="trust-arrow">→</span>
+  </button>
+  <button class="trust-item trust-action" type="button" onclick="trackEvent('trust_click',{item:'ubicacion',project:projects[current].label});scrollToId('ubicacion')" aria-label="Ver ubicación">
+    <div class="ico">📍</div><div><b>Ubicación verificable</b><small>Ver mapa y referencias</small></div><span class="trust-arrow">→</span>
+  </button>
+  <button class="trust-item trust-action" type="button" onclick="openDirectWhatsApp()" aria-label="Hablar con Gabriel por WhatsApp">
+    <div class="ico">💬</div><div><b>Atención directa</b><small>Hablar con Gabriel por WhatsApp</small></div><span class="trust-arrow">→</span>
+  </button>
 </div></div></section>
 
 <section class="quick"><div class="wrap"><div class="quick-grid">
@@ -237,7 +381,7 @@ body.dark .footer-row{border-color:var(--line)}
   </div>
 </div></section>
 
-<section class="section"><div class="wrap">
+<section class="section" id="esencial"><div class="wrap">
   <div class="section-head"><div><h2>Lo esencial del proyecto</h2><p>La información más consultada, en un solo lugar.</p></div></div>
   <div class="grid-3" id="facts"></div>
 </div></section>
@@ -275,22 +419,22 @@ body.dark .footer-row{border-color:var(--line)}
   </div>
 </div></section>
 
-<section class="section"><div class="wrap">
+<section class="section" id="documentos"><div class="wrap">
   <div class="section-head"><div><h2>Documentos</h2><p>Guarde o comparta la información del proyecto.</p></div></div>
   <div class="docs" id="docs"></div>
 </div></section>
 
 <section class="section"><div class="wrap"><div class="cta">
   <div><h2>¿Quiere conocer un lote?</h2><p>Le atiendo por WhatsApp y coordinamos una visita al proyecto.</p></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'bottom'})">💬 Hablar con Gabriel</a></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'bottom'})"><img class="wa-logo-text bottom-wa-logo" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">Hablar con Gabriel</span></a></div>
 </div></div></section>
 </main>
 
 <footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Información sujeta a disponibilidad y condiciones vigentes</span></div></div></footer>
-<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'floating'})">💬</a>
+<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'floating'})"><img src="assets/branding/whatsapp-logo-float.png" alt="WhatsApp"></a>
 <div class="whatsapp-nudge" id="waNudge">¿Tiene dudas? Escríbame por WhatsApp</div>
 <div class="mobile-actions">
-  <a class="btn btn-whatsapp" id="mobileWa" target="_blank">💬 WhatsApp</a>
+  <a class="btn btn-whatsapp" id="mobileWa" target="_blank"><img class="wa-logo-text" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">WhatsApp</span></a>
   <button class="btn btn-primary" onclick="openVisit()">📅 Visita</button>
 </div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
@@ -315,6 +459,14 @@ body.dark .footer-row{border-color:var(--line)}
 <script>
 
 
+
+function openDirectWhatsApp(){
+  const p=projects[current];
+  trackEvent('trust_click',{item:'atencion_directa',project:p.label});
+  const msg=`Hola Gabriel, vi la información de ${p.label} en su página y quisiera hacerle una consulta.`;
+  window.open(wa(msg),'_blank');
+}
+
 function trackEvent(name,params={}){
   try{ if(typeof fbq==='function') fbq('trackCustom',name,params); }catch(e){}
   try{ if(typeof gtag==='function') gtag('event',name,params); }catch(e){}
@@ -329,12 +481,38 @@ function closeLightbox(e,force=false){
   if(force || e.target.id==='lightbox'){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
 }
 
+
+function initRevealAnimations(){
+  const targets=[
+    ...document.querySelectorAll('.section'),
+    ...document.querySelectorAll('.trust-item'),
+    ...document.querySelectorAll('.quick-card')
+  ];
+  targets.forEach((el,i)=>{
+    el.classList.add('reveal');
+    el.dataset.delay=String((i%4)+1);
+  });
+  if(!('IntersectionObserver' in window)){
+    targets.forEach(el=>el.classList.add('in-view'));
+    return;
+  }
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.08,rootMargin:'0px 0px -35px 0px'});
+  targets.forEach(el=>observer.observe(el));
+}
+
 const phone='50236160954';
 const projects={
   palmeras:{
     label:'Palmeras San Miguel',tag:'🏡 Retalhuleu · Zona 5',price:'Q67,200',sub:'Terrenos en Retalhuleu con financiamiento propio, escrituras registradas y espacios para disfrutar en familia.',
     hero:'assets/palmeras/img/palmeras-portada.png',
-    logo:'assets/palmeras/img/palmeras-logo.jpg',
+    logo:'assets/branding/palmeras-logo-transparente.png',
     location:'Zona 5, camino a La Verde, Retalhuleu.',map:'https://maps.app.goo.gl/pBUyn98n8NCkGW8o6',mapEmbed:'https://www.google.com/maps?q=Palmeras+San+Miguel,+Zona+5,+camino+a+La+Verde,+Retalhuleu,+Guatemala&output=embed',refs:['A pocos minutos del Centro Comercial La Trinidad','Aproximadamente 30 min del IRTRA','Acceso por camino a La Verde'],
     products:[
       {name:'Primera fase · 8x16 m',price:67200,down:6000,terms:{'11 meses':5563.64,'2 años':3026.26,'3 años':2181.31,'4 años':1766.17,'5 años':1521.20,'6 años':1361.30,'7 años':1251.28,'8 años':1170.60}},
@@ -445,7 +623,7 @@ function renderVideosAndRenders(p){
 function updateTerms(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0],sel=document.getElementById('termSelect');if(prod.terms){sel.disabled=false;sel.innerHTML=Object.keys(prod.terms).map(t=>`<option>${t}</option>`).join('');sel.value=Object.keys(prod.terms).at(-1)}else{sel.disabled=true;sel.innerHTML='<option>Solicitar cuota exacta</option>'}}
 function updateQuote(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0];if(!prod)return; if(document.getElementById('productSelect').dataset.last!==String(document.getElementById('productSelect').value)){document.getElementById('productSelect').dataset.last=document.getElementById('productSelect').value;updateTerms()}
  const term=document.getElementById('termSelect').value;document.getElementById('quotePrice').textContent=money(prod.price);document.getElementById('quoteDown').textContent=money(prod.down);document.getElementById('quoteTerm').textContent=prod.terms?term:'Por definir';
- if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name,term,amount:prod.terms[term]})}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name})} }
+ if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name,term,amount:prod.terms[term]});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)} }
 document.getElementById('productSelect').addEventListener('change',()=>{document.getElementById('productSelect').dataset.last='';updateQuote()});
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function askAvailability(){const p=projects[current];trackEvent('availability_click',{project:p.label});window.open(wa(`Hola Gabriel, quiero conocer los lotes disponibles actualmente en ${p.label}. Lo estoy considerando para: `),'_blank')}
@@ -454,6 +632,7 @@ function sendVisit(){const p=projects[current],n=document.getElementById('visito
 function sharePage(){const p=projects[current],url=location.href.split('#')[0]+'#'+current;if(navigator.share){navigator.share({title:p.label,text:`Conozca ${p.label}`,url})}else{navigator.clipboard.writeText(url);alert('Enlace copiado') }}
 document.getElementById('visitModal').addEventListener('click',e=>{if(e.target.id==='visitModal')closeVisit()});
 const initial=location.hash.replace('#','');if(projects[initial])current=initial;render();
+requestAnimationFrame(initRevealAnimations);
 setTimeout(()=>{const n=document.getElementById('waNudge');if(n){n.classList.add('show');setTimeout(()=>n.classList.remove('show'),5500)}},1800);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))closeLightbox({target:{id:'lightbox'}},true)});
 </script>
