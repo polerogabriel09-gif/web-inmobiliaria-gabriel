@@ -4,6 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#0d3b35" />
+<meta name="description" content="Conozca Palmeras San Miguel, Buenaventura Cuyotenango y Vista Hermosa con precios, cuotas, ubicación, amenidades y contacto directo con Gabriel Polero." />
+<meta property="og:title" content="Gabriel Polero | Proyectos inmobiliarios" />
+<meta property="og:description" content="Precios, cuotas, ubicación, amenidades, planos y contacto directo por WhatsApp." />
+<meta property="og:type" content="website" />
+<link rel="preload" as="image" href="assets/palmeras/img/palmeras-portada.png" />
 <title>Gabriel Polero | Proyectos</title>
 <style>
 :root{
@@ -137,6 +142,35 @@ body.dark .footer-row{border-color:var(--line)}
   .logo-mini{width:110px}
 }
 
+
+/* ===== MEJORAS UX / CONVERSIÓN ===== */
+.trust-strip{padding:8px 0 18px}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.trust-item{display:flex;align-items:center;gap:10px;background:#111918;border:1px solid var(--line);border-radius:15px;padding:13px 14px}
+.trust-item .ico{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:#173129;font-size:20px}
+.trust-item b{display:block;font-size:13px}.trust-item small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.whatsapp-nudge{position:fixed;right:82px;bottom:24px;z-index:49;background:#111918;color:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 13px;box-shadow:0 12px 30px rgba(0,0,0,.26);font-size:12px;font-weight:800;opacity:0;transform:translateY(8px);pointer-events:none;transition:.35s}
+.whatsapp-nudge.show{opacity:1;transform:translateY(0)}
+.floating{animation:waPulse 2.8s infinite}
+@keyframes waPulse{0%,100%{box-shadow:0 12px 30px rgba(0,0,0,.22),0 0 0 0 rgba(29,191,115,.28)}50%{box-shadow:0 12px 30px rgba(0,0,0,.22),0 0 0 12px rgba(29,191,115,0)}}
+.mobile-actions{display:none;position:fixed;left:10px;right:10px;bottom:10px;z-index:55;background:rgba(11,17,16,.94);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:16px;padding:8px;gap:8px}
+.mobile-actions a,.mobile-actions button{flex:1;padding:11px 10px;border-radius:12px;font-size:12px}
+.lightbox{position:fixed;inset:0;z-index:120;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}.lightbox-inner{position:relative;width:min(1200px,96vw);height:min(820px,88vh);display:flex;align-items:center;justify-content:center}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:14px;background:#fff}
+.lightbox-close{position:absolute;right:0;top:-48px;width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:#111;font-size:24px;cursor:pointer}
+.media-tile img,.plan-preview img{cursor:zoom-in}
+.cta-context{margin-top:10px;font-size:12px;color:rgba(255,255,255,.72)}
+@media(max-width:860px){
+  .trust-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .mobile-actions{display:flex}
+  .floating{bottom:82px}
+  .whatsapp-nudge{right:18px;bottom:146px}
+  body{padding-bottom:82px}
+}
+
 </style>
 </head>
 <body class="dark">
@@ -145,7 +179,7 @@ body.dark .footer-row{border-color:var(--line)}
     <div class="brand"><div class="mark">GP</div><span>Gabriel Polero<small>Asesor inmobiliario</small></span></div>
     <div class="nav-actions">
       <button class="btn btn-ghost" onclick="sharePage()">↗ Compartir</button>
-      <a class="btn btn-whatsapp" id="topWa" target="_blank">💬 WhatsApp</a>
+      <a class="btn btn-whatsapp" id="topWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'top'})">💬 WhatsApp</a>
     </div>
   </div>
   <div class="wrap project-switcher"><div class="chips" id="projectChips"></div></div>
@@ -159,11 +193,18 @@ body.dark .footer-row{border-color:var(--line)}
     <p id="heroSub">Terrenos en Retalhuleu con financiamiento propio y espacios para disfrutar en familia.</p>
     <div class="price-big"><span>Desde</span><strong id="heroPrice">Q67,200</strong></div>
     <div class="hero-actions">
-      <button class="btn" style="background:#ffd878;color:#19332f" onclick="scrollToId('precios')">💰 Ver precios y cuotas</button>
+      <button class="btn" style="background:#ffd878;color:#19332f" onclick="trackEvent('prices_click',{project:projects[current].label});scrollToId('precios')">💰 Ver precios y cuotas</button>
       <button class="btn" style="background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.22)" onclick="openVisit()">📅 Agendar visita</button>
     </div>
   </div>
   <div class="hero-media" id="heroMedia"><span class="beta" id="heroBadge">GALERÍA</span><div class="logo-mini" id="heroLogo"><img src="" alt=""></div><div class="project-art"><div class="lot a"></div><div class="lot b"></div><div class="lot c"></div><div class="art-label" id="artLabel">Vista conceptual del proyecto</div></div></div>
+</div></div></section>
+
+<section class="trust-strip"><div class="wrap"><div class="trust-grid" id="trustGrid">
+  <div class="trust-item"><div class="ico">📜</div><div><b>Escrituras</b><small>Información jurídica del proyecto</small></div></div>
+  <div class="trust-item"><div class="ico">💳</div><div><b>Financiamiento propio</b><small>Opciones según proyecto</small></div></div>
+  <div class="trust-item"><div class="ico">📍</div><div><b>Ubicación verificable</b><small>Acceso directo a Google Maps</small></div></div>
+  <div class="trust-item"><div class="ico">💬</div><div><b>Atención directa</b><small>Gabriel Polero · WhatsApp</small></div></div>
 </div></div></section>
 
 <section class="quick"><div class="wrap"><div class="quick-grid">
@@ -241,12 +282,23 @@ body.dark .footer-row{border-color:var(--line)}
 
 <section class="section"><div class="wrap"><div class="cta">
   <div><h2>¿Quiere conocer un lote?</h2><p>Le atiendo por WhatsApp y coordinamos una visita al proyecto.</p></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank">💬 Hablar con Gabriel</a></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'bottom'})">💬 Hablar con Gabriel</a></div>
 </div></div></section>
 </main>
 
 <footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Información sujeta a disponibilidad y condiciones vigentes</span></div></div></footer>
-<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp">💬</a>
+<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'floating'})">💬</a>
+<div class="whatsapp-nudge" id="waNudge">¿Tiene dudas? Escríbame por WhatsApp</div>
+<div class="mobile-actions">
+  <a class="btn btn-whatsapp" id="mobileWa" target="_blank">💬 WhatsApp</a>
+  <button class="btn btn-primary" onclick="openVisit()">📅 Visita</button>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox(event,true)">×</button>
+    <img id="lightboxImg" src="" alt="Vista ampliada">
+  </div>
+</div>
 
 <div class="modal" id="visitModal"><div class="modal-card">
   <div class="modal-head"><div><h2 style="margin:0">Agendar visita</h2><p class="muted" style="margin:5px 0 0" id="visitProject">Palmeras San Miguel</p></div><button class="x" onclick="closeVisit()">×</button></div>
@@ -261,6 +313,21 @@ body.dark .footer-row{border-color:var(--line)}
 </div></div>
 
 <script>
+
+
+function trackEvent(name,params={}){
+  try{ if(typeof fbq==='function') fbq('trackCustom',name,params); }catch(e){}
+  try{ if(typeof gtag==='function') gtag('event',name,params); }catch(e){}
+  try{ if(Array.isArray(window.dataLayer)) window.dataLayer.push({event:name,...params}); }catch(e){}
+}
+function openLightbox(src,alt='Imagen del proyecto'){
+  const box=document.getElementById('lightbox'),img=document.getElementById('lightboxImg');
+  img.src=src;img.alt=alt;box.classList.add('open');document.body.style.overflow='hidden';
+  trackEvent('view_image',{project:projects[current].label,src});
+}
+function closeLightbox(e,force=false){
+  if(force || e.target.id==='lightbox'){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+}
 
 const phone='50236160954';
 const projects={
@@ -323,7 +390,7 @@ let current='palmeras';
 const money=n=>'Q'+Number(n).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2});
 const wa=text=>'https://wa.me/'+phone+'?text='+encodeURIComponent(text);
 function renderChips(){document.getElementById('projectChips').innerHTML=Object.entries(projects).map(([k,p])=>`<button class="chip ${k===current?'active':''}" onclick="selectProject('${k}')">${p.label}</button>`).join('')}
-function selectProject(k){current=k;location.hash=k;render();window.scrollTo({top:0,behavior:'smooth'})}
+function selectProject(k){current=k;location.hash=k;trackEvent('select_project',{project:projects[k].label});render();window.scrollTo({top:0,behavior:'smooth'})}
 function render(){const p=projects[current];renderChips();document.title=p.label+' | Gabriel Polero';
  document.getElementById('heroTag').textContent=p.tag;document.getElementById('heroName').textContent=p.label;document.getElementById('heroSub').textContent=p.sub;document.getElementById('heroPrice').textContent=p.price;
  const hero=document.getElementById('heroMedia'),heroLogo=document.getElementById('heroLogo'),heroBadge=document.getElementById('heroBadge');
@@ -345,19 +412,19 @@ function render(){const p=projects[current];renderChips();document.title=p.label
  const docs=[...(p.docs||[])];
  document.getElementById('docs').innerHTML=docs.map(d=>`<a class="doc" href="${d.href}" target="_blank"><div class="doc-icon">🗺️</div><div><b>${d.title}</b><small>${d.text}</small></div></a>`).join('')+`<button class="doc" style="text-align:left;cursor:pointer" onclick="window.print()"><div class="doc-icon">📄</div><div><b>Guardar ficha como PDF</b><small>Use la opción de impresión del navegador para guardar esta página en PDF.</small></div></button><a class="doc" href="${wa('Hola Gabriel, quiero una cotización personalizada de '+p.label+'.')}" target="_blank"><div class="doc-icon">💰</div><div><b>Solicitar cotización</b><small>Abra WhatsApp con el mensaje listo para enviar.</small></div></a>`;
  document.getElementById('productSelect').innerHTML=p.products.map((x,i)=>`<option value="${i}">${x.name} · ${money(x.price)}</option>`).join('');updateTerms();updateQuote();
- const base=`Hola Gabriel, vi la información de ${p.label} en su página y quiero más información.`;['topWa','bottomWa','floatWa'].forEach(id=>document.getElementById(id).href=wa(base));document.getElementById('visitProject').textContent=p.label;
+ const base=`Hola Gabriel, vi la información de ${p.label} en su página y quiero más información.`;['topWa','bottomWa','floatWa','mobileWa'].forEach(id=>document.getElementById(id).href=wa(base));document.getElementById('visitProject').textContent=p.label;
 }
 function renderPlanos(p){
  const section=document.getElementById('planosSection'),grid=document.getElementById('planosGrid'),quick=document.getElementById('quickPlanos');
  if(p.planos&&p.planos.length){
    section.classList.remove('hidden'); if(quick)quick.classList.remove('hidden');
-   grid.innerHTML=p.planos.map((pl,i)=>`<article class="card plan-card"><div class="plan-preview"><span class="plan-badge">FASE ${i+1}</span><img src="${pl.preview}" loading="lazy" alt="${pl.title}"></div><div class="plan-copy"><h3>${pl.title}</h3><p class="muted">${pl.text}</p><div class="plan-actions"><a class="btn btn-primary" href="${pl.href}" target="_blank" rel="noopener">🔎 Ver plano completo</a><a class="btn btn-secondary" href="${pl.href}" download>⬇ Descargar PDF</a></div></div></article>`).join('');
+   grid.innerHTML=p.planos.map((pl,i)=>`<article class="card plan-card"><div class="plan-preview"><span class="plan-badge">FASE ${i+1}</span><img src="${pl.preview}" loading="lazy" decoding="async" alt="${pl.title}" onclick="openLightbox('${pl.preview}','${pl.title}')"></div><div class="plan-copy"><h3>${pl.title}</h3><p class="muted">${pl.text}</p><div class="plan-actions"><a class="btn btn-primary" href="${pl.href}" target="_blank" rel="noopener" onclick="trackEvent('open_plan_pdf',{project:projects[current].label,phase:${i+1}})">🔎 Ver plano completo</a><a class="btn btn-secondary" href="${pl.href}" download onclick="trackEvent('download_plan',{project:projects[current].label,phase:${i+1}})">⬇ Descargar PDF</a></div></div></article>`).join('');
  }else{ section.classList.add('hidden'); if(quick)quick.classList.add('hidden'); grid.innerHTML=''; }
 }
 function renderGallery(p){
  const g=document.getElementById('gallery');
  if(p.gallery&&p.gallery.length){
-   g.innerHTML=`<div class="real-gallery">${p.gallery.map((x,i)=>`<figure class="media-tile"><img src="${x.src}" loading="${i?'lazy':'eager'}" alt="${x.caption}"><figcaption class="media-caption">${x.caption}</figcaption></figure>`).join('')}</div>`;
+   g.innerHTML=`<div class="real-gallery">${p.gallery.map((x,i)=>`<figure class="media-tile"><img src="${x.src}" loading="${i?'lazy':'eager'}" decoding="async" alt="${x.caption}" onclick="openLightbox('${x.src}','${x.caption}')"><figcaption class="media-caption">${x.caption}</figcaption></figure>`).join('')}</div>`;
  }else{
    g.innerHTML=`<div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><div style="display:grid;grid-template-columns:1.15fr .85fr;min-height:300px"><div style="background:linear-gradient(145deg,#1b5b50,#0d3b35);display:grid;place-items:center;color:#fff;text-align:center;padding:24px"><div><div style="font-size:46px">🏞️</div><h3>Galería próximamente</h3><p style="color:rgba(255,255,255,.72)">Aquí colocaremos fotografías reales de ${p.label}.</p></div></div><div style="display:grid;grid-template-rows:1fr 1fr"><div style="background:#172522;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🏊</div><b>Amenidades</b></div></div><div style="background:#2a261d;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🎥</div><b>Video / recorrido</b></div></div></div></div></div>`;
  }
@@ -378,15 +445,17 @@ function renderVideosAndRenders(p){
 function updateTerms(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0],sel=document.getElementById('termSelect');if(prod.terms){sel.disabled=false;sel.innerHTML=Object.keys(prod.terms).map(t=>`<option>${t}</option>`).join('');sel.value=Object.keys(prod.terms).at(-1)}else{sel.disabled=true;sel.innerHTML='<option>Solicitar cuota exacta</option>'}}
 function updateQuote(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0];if(!prod)return; if(document.getElementById('productSelect').dataset.last!==String(document.getElementById('productSelect').value)){document.getElementById('productSelect').dataset.last=document.getElementById('productSelect').value;updateTerms()}
  const term=document.getElementById('termSelect').value;document.getElementById('quotePrice').textContent=money(prod.price);document.getElementById('quoteDown').textContent=money(prod.down);document.getElementById('quoteTerm').textContent=prod.terms?term:'Por definir';
- if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`)}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`)} }
+ if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name,term,amount:prod.terms[term]})}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name})} }
 document.getElementById('productSelect').addEventListener('change',()=>{document.getElementById('productSelect').dataset.last='';updateQuote()});
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
-function askAvailability(){const p=projects[current];window.open(wa(`Hola Gabriel, quiero conocer los lotes disponibles actualmente en ${p.label}. Lo estoy considerando para: `),'_blank')}
-function openVisit(){document.getElementById('visitModal').classList.add('open')}function closeVisit(){document.getElementById('visitModal').classList.remove('open')}
-function sendVisit(){const p=projects[current],n=document.getElementById('visitorName').value.trim()||'Cliente',d=document.getElementById('visitDate').value||'día por coordinar',t=document.getElementById('visitTime').value,u=document.getElementById('visitUse').value;window.open(wa(`Hola Gabriel, soy ${n}. Quiero agendar una visita a ${p.label}. Fecha: ${d}. Horario: ${t}. Lo estoy buscando para ${u}.`),'_blank');closeVisit()}
+function askAvailability(){const p=projects[current];trackEvent('availability_click',{project:p.label});window.open(wa(`Hola Gabriel, quiero conocer los lotes disponibles actualmente en ${p.label}. Lo estoy considerando para: `),'_blank')}
+function openVisit(){trackEvent('visit_open',{project:projects[current].label});document.getElementById('visitModal').classList.add('open')}function closeVisit(){document.getElementById('visitModal').classList.remove('open')}
+function sendVisit(){const p=projects[current],n=document.getElementById('visitorName').value.trim()||'Cliente',d=document.getElementById('visitDate').value||'día por coordinar',t=document.getElementById('visitTime').value,u=document.getElementById('visitUse').value;trackEvent('visit_submit',{project:p.label,date:d,time:t,use:u});window.open(wa(`Hola Gabriel, soy ${n}. Quiero agendar una visita a ${p.label}. Fecha: ${d}. Horario: ${t}. Lo estoy buscando para ${u}.`),'_blank');closeVisit()}
 function sharePage(){const p=projects[current],url=location.href.split('#')[0]+'#'+current;if(navigator.share){navigator.share({title:p.label,text:`Conozca ${p.label}`,url})}else{navigator.clipboard.writeText(url);alert('Enlace copiado') }}
 document.getElementById('visitModal').addEventListener('click',e=>{if(e.target.id==='visitModal')closeVisit()});
 const initial=location.hash.replace('#','');if(projects[initial])current=initial;render();
+setTimeout(()=>{const n=document.getElementById('waNudge');if(n){n.classList.add('show');setTimeout(()=>n.classList.remove('show'),5500)}},1800);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('lightbox').classList.contains('open'))closeLightbox({target:{id:'lightbox'}},true)});
 </script>
 </body>
 </html>
