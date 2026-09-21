@@ -88,6 +88,55 @@ body.dark .theme-toggle{background:#192522;color:#f6d878;border:1px solid #31413
 .theme-toggle{min-width:46px}
 body.dark .footer-row{border-color:var(--line)}
 
+
+/* ===== MATERIAL REAL PALMERAS ===== */
+.hero-media.has-photo{
+  background-position:center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+}
+.hero-media.has-photo .project-art{display:none}
+.hero-media.has-photo:after{
+  background:linear-gradient(90deg,rgba(6,24,21,.38),rgba(6,24,21,.02) 58%,rgba(6,24,21,.14));
+}
+.hero-media .beta{background:rgba(8,25,22,.78);color:#fff;border:1px solid rgba(255,255,255,.18)}
+.real-gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px;width:100%}
+.media-tile{position:relative;overflow:hidden;border-radius:20px;background:#14201e;border:1px solid var(--line);min-height:240px}
+.media-tile:first-child{grid-row:span 2;min-height:492px}
+.media-tile img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .35s ease}
+.media-tile:hover img{transform:scale(1.035)}
+.media-caption{position:absolute;left:0;right:0;bottom:0;padding:34px 16px 14px;background:linear-gradient(transparent,rgba(5,16,14,.88));color:#fff;font-weight:850;font-size:14px}
+.video-section{display:none}
+.video-section.show{display:block}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.video-card{background:#111918;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.video-card video{width:100%;aspect-ratio:9/16;max-height:520px;background:#000;display:block;object-fit:cover}
+.video-card .video-copy{padding:14px 16px}
+.video-card b{display:block;margin-bottom:4px}
+.video-card small{color:var(--muted)}
+.renders-section{display:none}
+.renders-section.show{display:block}
+.render-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.render-card{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#111918}
+.render-card img{width:100%;height:230px;object-fit:cover;display:block}
+.render-badge{position:absolute;top:12px;left:12px;background:rgba(10,24,21,.82);color:#fff;border:1px solid rgba(255,255,255,.18);padding:7px 10px;border-radius:999px;font-size:11px;font-weight:900}
+.render-card .media-caption{font-size:13px}
+.doc[href$=".pdf"] .doc-icon{background:#1b2f2a}
+.logo-mini{position:absolute;right:18px;bottom:18px;z-index:3;width:150px;max-width:35%;border-radius:14px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.14);display:none}
+.hero-media.has-photo .logo-mini{display:block}
+.logo-mini img{width:100%;display:block}
+@media(max-width:860px){
+  .real-gallery{grid-template-columns:1fr 1fr}
+  .media-tile:first-child{grid-column:1/-1;grid-row:auto;min-height:330px}
+  .video-grid,.render-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .real-gallery,.video-grid,.render-grid{grid-template-columns:1fr}
+  .media-tile,.media-tile:first-child{min-height:270px}
+  .video-card video{max-height:560px}
+  .logo-mini{width:110px}
+}
+
 </style>
 </head>
 <body class="dark">
@@ -114,7 +163,7 @@ body.dark .footer-row{border-color:var(--line)}
       <button class="btn" style="background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.22)" onclick="openVisit()">📅 Agendar visita</button>
     </div>
   </div>
-  <div class="hero-media" id="heroMedia"><span class="beta">BETA</span><div class="project-art"><div class="lot a"></div><div class="lot b"></div><div class="lot c"></div><div class="art-label" id="artLabel">Vista conceptual del proyecto</div></div></div>
+  <div class="hero-media" id="heroMedia"><span class="beta" id="heroBadge">GALERÍA</span><div class="logo-mini" id="heroLogo"><img src="" alt=""></div><div class="project-art"><div class="lot a"></div><div class="lot b"></div><div class="lot c"></div><div class="art-label" id="artLabel">Vista conceptual del proyecto</div></div></div>
 </div></div></section>
 
 <section class="quick"><div class="wrap"><div class="quick-grid">
@@ -161,6 +210,16 @@ body.dark .footer-row{border-color:var(--line)}
   <div class="gallery" id="gallery"></div>
 </div></section>
 
+<section class="section video-section" id="videosSection"><div class="wrap">
+  <div class="section-head"><div><h2>Recorridos en video</h2><p>Conozca las amenidades y espacios del proyecto antes de su visita.</p></div></div>
+  <div class="video-grid" id="videosGrid"></div>
+</div></section>
+
+<section class="section renders-section" id="rendersSection"><div class="wrap">
+  <div class="section-head"><div><h2>Visualización del proyecto</h2><p>Imágenes ilustrativas del concepto y amenidades proyectadas.</p></div><span class="pill">Imágenes ilustrativas</span></div>
+  <div class="render-grid" id="rendersGrid"></div>
+</div></section>
+
 <section class="section" id="ubicacion"><div class="wrap">
   <div class="section-head"><div><h2>Ubicación</h2><p id="locationSubtitle">Una ubicación práctica en Retalhuleu.</p></div></div>
   <div class="grid-2">
@@ -180,7 +239,7 @@ body.dark .footer-row{border-color:var(--line)}
 </div></div></section>
 </main>
 
-<footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Beta demostrativa · información sujeta a disponibilidad</span></div></div></footer>
+<footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Información sujeta a disponibilidad y condiciones vigentes</span></div></div></footer>
 <a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp">💬</a>
 
 <div class="modal" id="visitModal"><div class="modal-card">
@@ -200,15 +259,38 @@ body.dark .footer-row{border-color:var(--line)}
 const phone='50236160954';
 const projects={
   palmeras:{
-    label:'Palmeras San Miguel',tag:'🏡 Retalhuleu · Zona 5',price:'Q67,200',sub:'Terrenos en Retalhuleu con financiamiento propio y espacios para disfrutar en familia.',image:null,
+    label:'Palmeras San Miguel',tag:'🏡 Retalhuleu · Zona 5',price:'Q67,200',sub:'Terrenos en Retalhuleu con financiamiento propio, escrituras registradas y espacios para disfrutar en familia.',
+    hero:'assets/palmeras/img/palmeras-portada.png',
+    logo:'assets/palmeras/img/palmeras-logo.jpg',
     location:'Zona 5, camino a La Verde, Retalhuleu.',map:'https://maps.app.goo.gl/pBUyn98n8NCkGW8o6',refs:['A pocos minutos del Centro Comercial La Trinidad','Aproximadamente 30 min del IRTRA','Acceso por camino a La Verde'],
     products:[
       {name:'Primera fase · 8x16 m',price:67200,down:6000,terms:{'11 meses':5563.64,'2 años':3026.26,'3 años':2181.31,'4 años':1766.17,'5 años':1521.20,'6 años':1361.30,'7 años':1251.28,'8 años':1170.60}},
       {name:'Segunda fase · 8x16 m',price:70400,down:6000,terms:{'11 meses':5854.55,'2 años':3184.50,'3 años':2295.37,'4 años':1858.52,'5 años':1600.74,'6 años':1432.48,'7 años':1316.71,'8 años':1231.81}}
     ],
     facts:[['📐','Medida','8 × 16 m'],['💵','Enganche','Q6,000'],['🧾','Reserva','Desde Q3,000'],['📜','Escritura','Registrada'],['🏗️','Construcción','Diseño libre'],['💳','Plazo','2 a 8 años']],
-    amenities:['🏊 Piscina','🏡 Casa club','🌳 Áreas verdes','🏀 Polideportivo','🔥 Churrasqueras','🛝 Juegos para niños','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica'],
-    gallery:[],docs:[],
+    amenities:['🏊 Piscina','🏡 Casa club','🌳 Áreas verdes','🏀 Área deportiva','🚶 Caminamientos','🛝 Juegos para niños','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica'],
+    gallery:[
+      {src:'assets/palmeras/img/palmeras-casa-club-1.jpg',caption:'Casa club y áreas verdes'},
+      {src:'assets/palmeras/img/palmeras-piscina-1.jpg',caption:'Piscina del proyecto'},
+      {src:'assets/palmeras/img/palmeras-cancha.jpg',caption:'Área deportiva'},
+      {src:'assets/palmeras/img/palmeras-kiosco-jardines.jpg',caption:'Kiosco y jardines'},
+      {src:'assets/palmeras/img/palmeras-casa-club-2.jpg',caption:'Amenidades y caminamientos'},
+      {src:'assets/palmeras/img/palmeras-piscina-2.jpg',caption:'Área de piscina'}
+    ],
+    videos:[
+      {src:'assets/palmeras/video/palmeras-casa-club-video-1.mp4',title:'Recorrido por casa club',caption:'Video real de las amenidades.'},
+      {src:'assets/palmeras/video/palmeras-casa-club-video-2.mp4',title:'Amenidades de Palmeras',caption:'Vista de espacios del proyecto.'},
+      {src:'assets/palmeras/video/palmeras-video-general.mp4',title:'Conozca Palmeras San Miguel',caption:'Recorrido general del proyecto.'}
+    ],
+    renders:[
+      {src:'assets/palmeras/img/palmeras-render-1.jpg',caption:'Concepto general de amenidades'},
+      {src:'assets/palmeras/img/palmeras-render-2.jpg',caption:'Visualización aérea del proyecto'},
+      {src:'assets/palmeras/img/palmeras-render-3.jpg',caption:'Concepto de áreas recreativas'}
+    ],
+    docs:[
+      {href:'assets/palmeras/docs/palmeras-plano-fase-1.pdf',title:'Plano Palmeras · Fase 1',text:'Abra o descargue el plano de la primera fase.'},
+      {href:'assets/palmeras/docs/palmeras-plano-fase-2.pdf',title:'Plano Palmeras · Fase 2',text:'Abra o descargue el plano de la segunda fase.'}
+    ],
     priceNote:'Seleccione una fase y plazo para ver la cuota exacta cargada en el catálogo.',quoteMode:'exact'
   },
   buenaventura:{
@@ -217,14 +299,14 @@ const projects={
     products:[{name:'Lote 8x16 m',price:83200,down:6000,terms:null},{name:'Lote 8x18 m',price:93600,down:6000,terms:null}],
     facts:[['📐','Medidas','8x16 · 8x18 y más'],['💵','Enganche','Q6,000'],['🏦','Financiamiento','Propio'],['📜','Escritura','Desmembrada'],['🏗️','Construcción','Diseño libre'],['🗓️','Plazo','2 a 8 años']],
     amenities:['🏊 Piscinas','🏡 Casa club','🌳 Áreas verdes','🛝 Juegos para niños','🚶 Caminamientos','🛡️ Garita','🧱 Muro perimetral','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje y planta de tratamiento'],
-    gallery:[],docs:[],priceNote:'Aquí mostramos los precios cargados. Para una cuota exacta según plazo, solicítela por WhatsApp.',quoteMode:'contact'
+    gallery:[],videos:[],renders:[],docs:[],priceNote:'Aquí mostramos los precios cargados. Para una cuota exacta según plazo, solicítela por WhatsApp.',quoteMode:'contact'
   },
   vista:{
     label:'Vista Hermosa',tag:'📍 Retalhuleu · CA-2 km 188',price:'Q83,200',sub:'Terrenos sobre la CA-2, cerca de Metroplaza y de los parques del IRTRA.',image:null,
     location:'CA-2 km 188, Retalhuleu.',map:'https://maps.app.goo.gl/DCckHh97SMMPiLFS9',refs:['Aproximadamente 7 min de Metroplaza','Aproximadamente 15 min del IRTRA','Ubicación sobre la CA-2'],
     products:[{name:'Lote 8x16 m · fase desde',price:83200,down:6000,terms:null}],
     facts:[['📐','Medida','8x16 m'],['💵','Enganche','Q6,000'],['🏦','Financiamiento','Propio'],['🏊','Amenidad','Piscina'],['🌳','Entorno','Áreas verdes'],['🗓️','Plazo','1 a 8 años']],
-    amenities:['🏊 Piscina','🌳 Áreas verdes','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje'],gallery:[],docs:[],priceNote:'Precio referencial cargado para esta beta. Solicite una cuota exacta por WhatsApp.',quoteMode:'contact'
+    amenities:['🏊 Piscina','🌳 Áreas verdes','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje'],gallery:[],videos:[],renders:[],docs:[],priceNote:'Precio referencial cargado para esta beta. Solicite una cuota exacta por WhatsApp.',quoteMode:'contact'
   }
 };
 let current='palmeras';
@@ -234,15 +316,48 @@ function renderChips(){document.getElementById('projectChips').innerHTML=Object.
 function selectProject(k){current=k;location.hash=k;render();window.scrollTo({top:0,behavior:'smooth'})}
 function render(){const p=projects[current];renderChips();document.title=p.label+' | Gabriel Polero';
  document.getElementById('heroTag').textContent=p.tag;document.getElementById('heroName').textContent=p.label;document.getElementById('heroSub').textContent=p.sub;document.getElementById('heroPrice').textContent=p.price;
- const hero=document.getElementById('heroMedia');hero.style.background=current==='palmeras'?'radial-gradient(circle at 70% 20%,#5f9c78,#245c4c 38%,#0d3b35 78%)':current==='buenaventura'?'radial-gradient(circle at 70% 20%,#9aaa55,#4e7543 38%,#173d35 78%)':'radial-gradient(circle at 75% 20%,#75a9a0,#2d655d 35%,#143b36 78%)';document.getElementById('artLabel').textContent='Vista conceptual · '+p.label;
+ const hero=document.getElementById('heroMedia'),heroLogo=document.getElementById('heroLogo'),heroBadge=document.getElementById('heroBadge');
+ if(p.hero){
+   hero.classList.add('has-photo');
+   hero.style.background=`linear-gradient(90deg,rgba(7,25,22,.10),rgba(7,25,22,.05)),url('${p.hero}') center/cover no-repeat`;
+   heroBadge.textContent='FOTOS REALES';
+   if(p.logo){heroLogo.querySelector('img').src=p.logo;heroLogo.querySelector('img').alt='Logo '+p.label;heroLogo.style.display='block'}else{heroLogo.style.display='none'}
+ }else{
+   hero.classList.remove('has-photo');
+   hero.style.background=current==='buenaventura'?'radial-gradient(circle at 70% 20%,#9aaa55,#4e7543 38%,#173d35 78%)':'radial-gradient(circle at 75% 20%,#75a9a0,#2d655d 35%,#143b36 78%)';
+   heroBadge.textContent='BETA';
+   heroLogo.style.display='none';
+ }
+ document.getElementById('artLabel').textContent='Vista conceptual · '+p.label;
  document.getElementById('priceIntro').textContent=p.priceNote;document.getElementById('facts').innerHTML=p.facts.map(x=>`<div class="card"><div style="font-size:27px">${x[0]}</div><h3 style="margin:10px 0 2px">${x[1]}</h3><div class="muted">${x[2]}</div></div>`).join('');
- document.getElementById('amenities').innerHTML=p.amenities.map(x=>`<div class="amenity">${x}</div>`).join('');
+ document.getElementById('amenityIntro').textContent=current==='palmeras'?'Amenidades y servicios mostrados con material real del proyecto.':'Espacios y servicios incluidos en el proyecto.';document.getElementById('amenities').innerHTML=p.amenities.map(x=>`<div class="amenity">${x}</div>`).join('');
  renderGallery(p);document.getElementById('locationTitle').textContent=p.label;document.getElementById('locationText').textContent=p.location;document.getElementById('mapLink').href=p.map;document.getElementById('references').innerHTML=p.refs.map((x,i)=>`<div class="stat"><span>${i===0?'📍':i===1?'🚗':'🛣️'} ${x}</span><b>✓</b></div>`).join('');
- document.getElementById('docs').innerHTML=`<button class="doc" style="text-align:left;cursor:pointer" onclick="window.print()"><div class="doc-icon">📄</div><div><b>Guardar ficha como PDF</b><small>Use la opción de impresión del navegador para guardar esta página en PDF.</small></div></button><a class="doc" href="${wa('Hola Gabriel, quiero una cotización personalizada de '+p.label+'.')}" target="_blank"><div class="doc-icon">💰</div><div><b>Solicitar cotización</b><small>Abra WhatsApp con el mensaje listo para enviar.</small></div></a>`;
+ const docs=[...(p.docs||[])];
+ document.getElementById('docs').innerHTML=docs.map(d=>`<a class="doc" href="${d.href}" target="_blank"><div class="doc-icon">🗺️</div><div><b>${d.title}</b><small>${d.text}</small></div></a>`).join('')+`<button class="doc" style="text-align:left;cursor:pointer" onclick="window.print()"><div class="doc-icon">📄</div><div><b>Guardar ficha como PDF</b><small>Use la opción de impresión del navegador para guardar esta página en PDF.</small></div></button><a class="doc" href="${wa('Hola Gabriel, quiero una cotización personalizada de '+p.label+'.')}" target="_blank"><div class="doc-icon">💰</div><div><b>Solicitar cotización</b><small>Abra WhatsApp con el mensaje listo para enviar.</small></div></a>`;
  document.getElementById('productSelect').innerHTML=p.products.map((x,i)=>`<option value="${i}">${x.name} · ${money(x.price)}</option>`).join('');updateTerms();updateQuote();
  const base=`Hola Gabriel, vi la información de ${p.label} en su página y quiero más información.`;['topWa','bottomWa','floatWa'].forEach(id=>document.getElementById(id).href=wa(base));document.getElementById('visitProject').textContent=p.label;
 }
-function renderGallery(p){const g=document.getElementById('gallery');g.innerHTML=`<div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><div style="display:grid;grid-template-columns:1.15fr .85fr;min-height:300px"><div style="background:linear-gradient(145deg,#1b5b50,#0d3b35);display:grid;place-items:center;color:#fff;text-align:center;padding:24px"><div><div style="font-size:46px">🏞️</div><h3>Foto aérea del proyecto</h3><p style="color:rgba(255,255,255,.72)">Aquí colocaremos una fotografía real de ${p.label}.</p></div></div><div style="display:grid;grid-template-rows:1fr 1fr"><div style="background:#eaf3f0;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🏊</div><b>Amenidades</b></div></div><div style="background:#f4efe2;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🎥</div><b>Video / recorrido</b></div></div></div></div></div>`}
+function renderGallery(p){
+ const g=document.getElementById('gallery');
+ if(p.gallery&&p.gallery.length){
+   g.innerHTML=`<div class="real-gallery">${p.gallery.map((x,i)=>`<figure class="media-tile"><img src="${x.src}" loading="${i?'lazy':'eager'}" alt="${x.caption}"><figcaption class="media-caption">${x.caption}</figcaption></figure>`).join('')}</div>`;
+ }else{
+   g.innerHTML=`<div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><div style="display:grid;grid-template-columns:1.15fr .85fr;min-height:300px"><div style="background:linear-gradient(145deg,#1b5b50,#0d3b35);display:grid;place-items:center;color:#fff;text-align:center;padding:24px"><div><div style="font-size:46px">🏞️</div><h3>Galería próximamente</h3><p style="color:rgba(255,255,255,.72)">Aquí colocaremos fotografías reales de ${p.label}.</p></div></div><div style="display:grid;grid-template-rows:1fr 1fr"><div style="background:#172522;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🏊</div><b>Amenidades</b></div></div><div style="background:#2a261d;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🎥</div><b>Video / recorrido</b></div></div></div></div></div>`;
+ }
+ renderVideosAndRenders(p);
+}
+function renderVideosAndRenders(p){
+ const vs=document.getElementById('videosSection'),vg=document.getElementById('videosGrid');
+ const rs=document.getElementById('rendersSection'),rg=document.getElementById('rendersGrid');
+ if(p.videos&&p.videos.length){
+   vs.classList.add('show');
+   vg.innerHTML=p.videos.map(v=>`<article class="video-card"><video controls preload="metadata" playsinline><source src="${v.src}" type="video/mp4">Su navegador no puede reproducir este video.</video><div class="video-copy"><b>${v.title}</b><small>${v.caption}</small></div></article>`).join('');
+ }else{vs.classList.remove('show');vg.innerHTML=''}
+ if(p.renders&&p.renders.length){
+   rs.classList.add('show');
+   rg.innerHTML=p.renders.map(r=>`<article class="render-card"><span class="render-badge">IMAGEN ILUSTRATIVA</span><img src="${r.src}" loading="lazy" alt="${r.caption}"><div class="media-caption">${r.caption}</div></article>`).join('');
+ }else{rs.classList.remove('show');rg.innerHTML=''}
+}
 function updateTerms(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0],sel=document.getElementById('termSelect');if(prod.terms){sel.disabled=false;sel.innerHTML=Object.keys(prod.terms).map(t=>`<option>${t}</option>`).join('');sel.value=Object.keys(prod.terms).at(-1)}else{sel.disabled=true;sel.innerHTML='<option>Solicitar cuota exacta</option>'}}
 function updateQuote(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0];if(!prod)return; if(document.getElementById('productSelect').dataset.last!==String(document.getElementById('productSelect').value)){document.getElementById('productSelect').dataset.last=document.getElementById('productSelect').value;updateTerms()}
  const term=document.getElementById('termSelect').value;document.getElementById('quotePrice').textContent=money(prod.price);document.getElementById('quoteDown').textContent=money(prod.down);document.getElementById('quoteTerm').textContent=prod.terms?term:'Por definir';
