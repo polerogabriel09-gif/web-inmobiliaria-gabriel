@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0d3b35" />
+<title>Gabriel Polero | Proyectos</title>
+<style>
+:root{
+  --bg:#f4f7f6;--surface:#ffffff;--ink:#15201e;--muted:#65716e;--line:#dde6e3;
+  --brand:#0d3b35;--brand2:#14584f;--gold:#d8aa46;--ok:#128c7e;--shadow:0 16px 42px rgba(13,59,53,.12);
+  --radius:22px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{text-decoration:none;color:inherit} button,input,select{font:inherit}.wrap{width:min(1120px,calc(100% - 28px));margin:auto}
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:11px;font-weight:900}.mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,var(--brand),#1b6c61);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:0 8px 20px rgba(13,59,53,.2)}
+.brand small{display:block;font-weight:650;color:var(--muted);font-size:11px;letter-spacing:.02em}.nav-actions{display:flex;gap:9px}.btn{border:0;border-radius:14px;padding:12px 16px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--brand);color:#fff}.btn-whatsapp{background:#1dbf73;color:#fff}.btn-ghost{background:#fff;border:1px solid var(--line)}
+.project-switcher{padding:14px 0 0}.chips{display:flex;gap:9px;overflow:auto;padding:0 0 14px;scrollbar-width:none}.chip{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;color:#43514e}.chip.active{background:var(--brand);color:#fff;border-color:var(--brand)}
+.hero{padding:18px 0 18px}.hero-card{position:relative;overflow:hidden;border-radius:30px;min-height:470px;background:linear-gradient(135deg,#0d3b35,#1b665b);box-shadow:var(--shadow);display:grid;grid-template-columns:1.08fr .92fr}.hero-copy{padding:54px 52px;color:#fff;position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center}.eyebrow{display:inline-flex;width:max-content;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800}.hero h1{font-size:clamp(38px,6vw,68px);line-height:.94;margin:18px 0 16px;letter-spacing:-.045em}.hero p{font-size:18px;line-height:1.55;color:rgba(255,255,255,.84);max-width:580px}.price-big{display:flex;align-items:flex-end;gap:9px;margin:16px 0 4px}.price-big span{font-size:16px;color:rgba(255,255,255,.75);padding-bottom:9px}.price-big strong{font-size:44px;line-height:1;color:#ffd878}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.hero-media{position:relative;min-height:470px;background:linear-gradient(145deg,#173d37,#0a2b27)}.project-art{position:absolute;inset:0;overflow:hidden}.project-art:before{content:"";position:absolute;inset:0;background:linear-gradient(28deg,transparent 47%,rgba(255,255,255,.13) 48%,rgba(255,255,255,.13) 50%,transparent 51%),linear-gradient(-34deg,transparent 47%,rgba(255,255,255,.09) 48%,rgba(255,255,255,.09) 50%,transparent 51%);background-size:115px 95px}.lot{position:absolute;border:2px solid rgba(255,255,255,.36);border-radius:10px;background:rgba(255,255,255,.07);transform:rotate(-7deg)}.lot.a{width:160px;height:92px;left:12%;top:16%}.lot.b{width:120px;height:150px;right:12%;top:18%}.lot.c{width:190px;height:110px;left:28%;bottom:12%}.art-label{position:absolute;left:28px;bottom:26px;z-index:2;background:rgba(255,255,255,.92);color:#173f38;padding:12px 14px;border-radius:14px;font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.12)}.hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,59,53,.32),rgba(13,59,53,0) 45%)}.beta{position:absolute;right:18px;top:18px;z-index:2;background:#fff;color:var(--brand);font-weight:900;font-size:12px;padding:7px 10px;border-radius:999px}
+.quick{padding:8px 0 22px}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.quick-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;transition:.2s;box-shadow:0 5px 18px rgba(15,48,44,.05)}.quick-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}.quick-icon{font-size:26px}.quick-card b{display:block;margin-top:10px}.quick-card small{color:var(--muted);line-height:1.4;display:block;margin-top:4px}
+.section{padding:32px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}.section-head h2{font-size:30px;margin:0;letter-spacing:-.03em}.section-head p{margin:6px 0 0;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 8px 24px rgba(15,48,44,.05)}.card h3{margin:0 0 8px}.muted{color:var(--muted)}
+.stat{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.stat span{color:var(--muted)}.stat strong{font-size:18px}.pill{display:inline-flex;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:850;background:#edf7f4;color:#165f55}
+.finance-box{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}.controls label{display:block;font-weight:800;margin:14px 0 8px}.controls select,.controls input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:#fff}.quote{background:linear-gradient(145deg,#0d3b35,#184f47);color:#fff;border-radius:20px;padding:25px}.quote .amount{font-size:42px;font-weight:900;color:#ffd878;margin:6px 0}.quote small{color:rgba(255,255,255,.7)}.quote .break{border-top:1px solid rgba(255,255,255,.16);margin:18px 0}.quote-row{display:flex;justify-content:space-between;gap:10px;margin:9px 0;color:rgba(255,255,255,.86)}
+.amenities{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.amenity{padding:15px;border-radius:16px;background:#f5f9f8;border:1px solid var(--line);font-weight:800}.amenity span{margin-right:7px}.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px}.gallery figure{margin:0;height:320px;overflow:hidden;border-radius:20px;background:#dfe8e5}.gallery img{width:100%;height:100%;object-fit:cover}.gallery figure:nth-child(2),.gallery figure:nth-child(3){height:154px}.gallery-side{display:grid;gap:12px}
+.map-card{padding:0;overflow:hidden}.map-placeholder{min-height:250px;background:radial-gradient(circle at 30% 20%,#bee4d6,#d9eee7 30%,#edf6f3 60%);position:relative;display:grid;place-items:center}.map-placeholder:before{content:"";position:absolute;inset:0;background-image:linear-gradient(25deg,transparent 48%,rgba(13,59,53,.08) 49%,rgba(13,59,53,.08) 51%,transparent 52%),linear-gradient(-35deg,transparent 48%,rgba(13,59,53,.06) 49%,rgba(13,59,53,.06) 51%,transparent 52%);background-size:70px 70px}.pin{font-size:52px;z-index:2}.map-info{padding:22px}
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:14px}.doc{display:flex;gap:15px;align-items:center;border:1px solid var(--line);padding:18px;border-radius:17px;background:#fff}.doc-icon{width:48px;height:48px;border-radius:14px;background:#f6ecec;display:grid;place-items:center;font-size:23px}.doc b{display:block}.doc small{color:var(--muted)}
+.cta{margin:26px 0 48px;background:linear-gradient(135deg,#0d3b35,#1c6f63);border-radius:28px;padding:34px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px}.cta h2{margin:0 0 6px}.cta p{margin:0;color:rgba(255,255,255,.76)}
+.footer{padding:30px 0 46px;color:var(--muted);font-size:14px}.footer-row{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:24px}
+.floating{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#1dbf73;color:#fff;display:grid;place-items:center;font-size:26px;box-shadow:0 12px 30px rgba(0,0,0,.22);z-index:50}
+.modal{position:fixed;inset:0;background:rgba(9,25,22,.62);display:none;align-items:center;justify-content:center;padding:18px;z-index:80}.modal.open{display:flex}.modal-card{width:min(520px,100%);background:#fff;border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.25)}.modal-head{display:flex;justify-content:space-between;align-items:center}.x{border:0;background:#eef3f2;border-radius:10px;width:38px;height:38px;font-size:20px;cursor:pointer}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid label{font-weight:800;font-size:13px}.field{display:flex;flex-direction:column;gap:7px;margin-top:12px}.field input,.field select{border:1px solid var(--line);border-radius:12px;padding:13px}.full{grid-column:1/-1}.notice{background:#fff9e9;border:1px solid #f2dda4;border-radius:14px;padding:12px 14px;color:#72581b;font-size:13px;margin-top:14px}.hidden{display:none!important}
+@media(max-width:860px){.hero-card{grid-template-columns:1fr}.hero-copy{padding:40px 26px}.hero-media{min-height:300px;order:-1}.quick-grid{grid-template-columns:1fr 1fr}.grid-2,.finance-box{grid-template-columns:1fr}.grid-3,.amenities{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr}.gallery figure,.gallery figure:nth-child(2),.gallery figure:nth-child(3){height:240px}.gallery-side{grid-template-columns:1fr 1fr}.cta{flex-direction:column;align-items:flex-start}.nav .btn-ghost{display:none}}
+@media print{.topbar,.quick,.floating,.cta,.modal,.hero-actions,.btn{display:none!important}body{background:#fff}.hero-card,.card,.quote{box-shadow:none!important}.section{page-break-inside:avoid}.hero{padding-top:0}.wrap{width:100%}.hero-card{min-height:360px}.hero-copy{padding:32px}.hero-media{min-height:260px}}
+@media(max-width:560px){.wrap{width:min(100% - 20px,1120px)}.brand span:last-child{display:none}.nav-actions .btn{padding:10px 12px}.hero{padding-top:8px}.hero-card{border-radius:22px}.hero-media{min-height:245px}.hero-copy{padding:30px 21px}.hero h1{font-size:42px}.hero p{font-size:16px}.price-big strong{font-size:36px}.quick-grid,.grid-3,.amenities,.docs{grid-template-columns:1fr}.section{padding:25px 0}.section-head h2{font-size:26px}.card{padding:20px}.gallery-side{grid-template-columns:1fr}.footer-row{flex-direction:column}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.quote .amount{font-size:36px}}
+
+/* ===== MODO OSCURO BETA ===== */
+body.dark{
+  --bg:#0b1110;
+  --surface:#111918;
+  --ink:#eef5f2;
+  --muted:#9aaba6;
+  --line:#263330;
+  --brand:#164f46;
+  --brand2:#1f6c60;
+  --gold:#e5ba58;
+  --shadow:0 16px 42px rgba(0,0,0,.34);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(25,91,80,.13), transparent 28%),
+    radial-gradient(circle at 92% 12%, rgba(216,170,70,.06), transparent 24%),
+    var(--bg);
+  color:var(--ink);
+}
+body.dark .topbar{background:rgba(11,17,16,.92);border-color:var(--line)}
+body.dark .btn-ghost,
+body.dark .chip,
+body.dark .quick-card,
+body.dark .card,
+body.dark .doc,
+body.dark .modal-card{background:#111918;color:var(--ink);border-color:var(--line)}
+body.dark .chip{color:#c8d4d0}
+body.dark .chip.active{background:#1d665a;color:#fff;border-color:#277e70}
+body.dark .quick-card{box-shadow:0 8px 22px rgba(0,0,0,.18)}
+body.dark .amenity{background:#15201e;border-color:#293936;color:#eaf2ef}
+body.dark .controls select,
+body.dark .controls input,
+body.dark .field input,
+body.dark .field select{background:#0e1514;color:#eef5f2;border-color:#30403c}
+body.dark .map-placeholder{
+  background:radial-gradient(circle at 30% 20%,#23463f,#172b27 34%,#101817 68%);
+}
+body.dark .map-placeholder:before{opacity:.55}
+body.dark .doc-icon{background:#241a1a}
+body.dark .pill{background:#18342e;color:#8cd5c3}
+body.dark .notice{background:#2a2416;border-color:#534622;color:#f1d98e}
+body.dark .x{background:#1b2623;color:#fff}
+body.dark .footer{color:#82938e}
+body.dark .art-label{background:rgba(15,24,22,.92);color:#dff1eb}
+body.dark .btn-primary{background:#1b665a}
+body.dark .project-switcher{background:transparent}
+body.dark .gallery [style*="background:#eaf3f0"]{background:#172522!important}
+body.dark .gallery [style*="background:#f4efe2"]{background:#2a261d!important}
+body.dark .gallery [style*="background:linear-gradient(145deg,#1b5b50,#0d3b35)"]{background:linear-gradient(145deg,#183f38,#0b2521)!important}
+body.dark .stat strong,
+body.dark .stat b{color:#f2f7f5}
+body.dark .modal{background:rgba(0,0,0,.72)}
+body.dark .theme-toggle{background:#192522;color:#f6d878;border:1px solid #31413d}
+.theme-toggle{min-width:46px}
+body.dark .footer-row{border-color:var(--line)}
+
+</style>
+</head>
+<body class="dark">
+<div class="topbar">
+  <div class="wrap nav">
+    <div class="brand"><div class="mark">GP</div><span>Gabriel Polero<small>Asesor inmobiliario</small></span></div>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="sharePage()">↗ Compartir</button>
+      <a class="btn btn-whatsapp" id="topWa" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div class="wrap project-switcher"><div class="chips" id="projectChips"></div></div>
+</div>
+
+<main>
+<section class="hero"><div class="wrap"><div class="hero-card">
+  <div class="hero-copy">
+    <div class="eyebrow" id="heroTag">🏡 Proyecto urbanizado</div>
+    <h1 id="heroName">Palmeras San Miguel</h1>
+    <p id="heroSub">Terrenos en Retalhuleu con financiamiento propio y espacios para disfrutar en familia.</p>
+    <div class="price-big"><span>Desde</span><strong id="heroPrice">Q67,200</strong></div>
+    <div class="hero-actions">
+      <button class="btn" style="background:#ffd878;color:#19332f" onclick="scrollToId('precios')">💰 Ver precios y cuotas</button>
+      <button class="btn" style="background:rgba(255,255,255,.13);color:#fff;border:1px solid rgba(255,255,255,.22)" onclick="openVisit()">📅 Agendar visita</button>
+    </div>
+  </div>
+  <div class="hero-media" id="heroMedia"><span class="beta">BETA</span><div class="project-art"><div class="lot a"></div><div class="lot b"></div><div class="lot c"></div><div class="art-label" id="artLabel">Vista conceptual del proyecto</div></div></div>
+</div></div></section>
+
+<section class="quick"><div class="wrap"><div class="quick-grid">
+  <div class="quick-card" onclick="scrollToId('precios')"><div class="quick-icon">💰</div><b>Precios y cuotas</b><small>Compare opciones de pago y financiamiento.</small></div>
+  <div class="quick-card" onclick="scrollToId('ubicacion')"><div class="quick-icon">📍</div><b>Ubicación</b><small>Vea referencias y abra Google Maps.</small></div>
+  <div class="quick-card" onclick="askAvailability()"><div class="quick-icon">🏡</div><b>Disponibilidad</b><small>Consulte lotes y medidas disponibles.</small></div>
+  <div class="quick-card" onclick="openVisit()"><div class="quick-icon">📅</div><b>Agendar visita</b><small>Coordine día y horario por WhatsApp.</small></div>
+</div></div></section>
+
+<section class="section" id="precios"><div class="wrap">
+  <div class="section-head"><div><h2>Precios y financiamiento</h2><p id="priceIntro">Seleccione una fase y plazo para ver la cuota.</p></div><span class="pill">Financiamiento propio</span></div>
+  <div class="finance-box">
+    <div class="card controls">
+      <h3>Cotizador rápido</h3>
+      <p class="muted">Esta beta muestra cifras cargadas para cada proyecto.</p>
+      <label for="productSelect">Opción</label><select id="productSelect" onchange="updateQuote()"></select>
+      <label for="termSelect">Plazo</label><select id="termSelect" onchange="updateQuote()"></select>
+      <div class="notice" id="quoteNotice">Las cuotas son informativas y deben confirmarse según disponibilidad y condiciones vigentes.</div>
+    </div>
+    <div class="quote">
+      <small id="quoteLabel">Cuota mensual aproximada</small>
+      <div class="amount" id="quoteAmount">Q1,170.60</div>
+      <div class="quote-row"><span>Precio</span><b id="quotePrice">Q67,200</b></div>
+      <div class="quote-row"><span>Enganche</span><b id="quoteDown">Q6,000</b></div>
+      <div class="quote-row"><span>Plazo</span><b id="quoteTerm">8 años</b></div>
+      <div class="break"></div>
+      <a class="btn" style="background:#ffd878;color:#183c36;width:100%" id="quoteWa" target="_blank">Solicitar esta opción por WhatsApp</a>
+    </div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><h2>Lo esencial del proyecto</h2><p>La información más consultada, en un solo lugar.</p></div></div>
+  <div class="grid-3" id="facts"></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><h2>Amenidades y servicios</h2><p id="amenityIntro">Espacios y servicios incluidos en el proyecto.</p></div></div>
+  <div class="card"><div class="amenities" id="amenities"></div></div>
+</div></section>
+
+<section class="section" id="galeria"><div class="wrap">
+  <div class="section-head"><div><h2>Conozca el proyecto</h2><p>Fotos y material visual para explorar antes de su visita.</p></div></div>
+  <div class="gallery" id="gallery"></div>
+</div></section>
+
+<section class="section" id="ubicacion"><div class="wrap">
+  <div class="section-head"><div><h2>Ubicación</h2><p id="locationSubtitle">Una ubicación práctica en Retalhuleu.</p></div></div>
+  <div class="grid-2">
+    <div class="card map-card"><div class="map-placeholder"><div class="pin">📍</div></div><div class="map-info"><h3 id="locationTitle">Palmeras San Miguel</h3><p class="muted" id="locationText"></p><a class="btn btn-primary" id="mapLink" target="_blank">Abrir en Google Maps</a></div></div>
+    <div class="card"><h3>Referencias</h3><div id="references"></div></div>
+  </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+  <div class="section-head"><div><h2>Documentos</h2><p>Guarde o comparta la información del proyecto.</p></div></div>
+  <div class="docs" id="docs"></div>
+</div></section>
+
+<section class="section"><div class="wrap"><div class="cta">
+  <div><h2>¿Quiere conocer un lote?</h2><p>Le atiendo por WhatsApp y coordinamos una visita al proyecto.</p></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank">💬 Hablar con Gabriel</a></div>
+</div></div></section>
+</main>
+
+<footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Beta demostrativa · información sujeta a disponibilidad</span></div></div></footer>
+<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp">💬</a>
+
+<div class="modal" id="visitModal"><div class="modal-card">
+  <div class="modal-head"><div><h2 style="margin:0">Agendar visita</h2><p class="muted" style="margin:5px 0 0" id="visitProject">Palmeras San Miguel</p></div><button class="x" onclick="closeVisit()">×</button></div>
+  <div class="form-grid">
+    <div class="field full"><label>Nombre</label><input id="visitorName" placeholder="Su nombre"></div>
+    <div class="field"><label>Día</label><input id="visitDate" type="date"></div>
+    <div class="field"><label>Horario</label><select id="visitTime"><option>Mañana</option><option>Tarde</option><option>Quiero coordinar horario</option></select></div>
+    <div class="field full"><label>¿Qué busca?</label><select id="visitUse"><option>Construir mi casa</option><option>Hacer locales</option><option>Patrimonio / inversión</option><option>Aún estoy evaluando</option></select></div>
+  </div>
+  <div class="notice">Al continuar se abrirá WhatsApp con el mensaje listo. Usted decide si lo envía.</div>
+  <button class="btn btn-whatsapp" style="width:100%;margin-top:16px" onclick="sendVisit()">Continuar por WhatsApp</button>
+</div></div>
+
+<script>
+
+const phone='50236160954';
+const projects={
+  palmeras:{
+    label:'Palmeras San Miguel',tag:'🏡 Retalhuleu · Zona 5',price:'Q67,200',sub:'Terrenos en Retalhuleu con financiamiento propio y espacios para disfrutar en familia.',image:null,
+    location:'Zona 5, camino a La Verde, Retalhuleu.',map:'https://maps.app.goo.gl/pBUyn98n8NCkGW8o6',refs:['A pocos minutos del Centro Comercial La Trinidad','Aproximadamente 30 min del IRTRA','Acceso por camino a La Verde'],
+    products:[
+      {name:'Primera fase · 8x16 m',price:67200,down:6000,terms:{'11 meses':5563.64,'2 años':3026.26,'3 años':2181.31,'4 años':1766.17,'5 años':1521.20,'6 años':1361.30,'7 años':1251.28,'8 años':1170.60}},
+      {name:'Segunda fase · 8x16 m',price:70400,down:6000,terms:{'11 meses':5854.55,'2 años':3184.50,'3 años':2295.37,'4 años':1858.52,'5 años':1600.74,'6 años':1432.48,'7 años':1316.71,'8 años':1231.81}}
+    ],
+    facts:[['📐','Medida','8 × 16 m'],['💵','Enganche','Q6,000'],['🧾','Reserva','Desde Q3,000'],['📜','Escritura','Registrada'],['🏗️','Construcción','Diseño libre'],['💳','Plazo','2 a 8 años']],
+    amenities:['🏊 Piscina','🏡 Casa club','🌳 Áreas verdes','🏀 Polideportivo','🔥 Churrasqueras','🛝 Juegos para niños','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica'],
+    gallery:[],docs:[],
+    priceNote:'Seleccione una fase y plazo para ver la cuota exacta cargada en el catálogo.',quoteMode:'exact'
+  },
+  buenaventura:{
+    label:'Buenaventura Cuyotenango',tag:'🌴 Cuyotenango · km 168',price:'Q83,200',sub:'Proyecto urbanizado camino hacia Tulate, con amenidades familiares y financiamiento propio.',image:null,
+    location:'Km 168 de la carretera que se dirige hacia la playa de Tulate, Cuyotenango.',map:'https://maps.app.goo.gl/4wTj52Ez32rdigXk8',refs:['A 2 min del centro de Cuyotenango','Aproximadamente 15 min de los parques del IRTRA','Sobre la ruta hacia Tulate'],
+    products:[{name:'Lote 8x16 m',price:83200,down:6000,terms:null},{name:'Lote 8x18 m',price:93600,down:6000,terms:null}],
+    facts:[['📐','Medidas','8x16 · 8x18 y más'],['💵','Enganche','Q6,000'],['🏦','Financiamiento','Propio'],['📜','Escritura','Desmembrada'],['🏗️','Construcción','Diseño libre'],['🗓️','Plazo','2 a 8 años']],
+    amenities:['🏊 Piscinas','🏡 Casa club','🌳 Áreas verdes','🛝 Juegos para niños','🚶 Caminamientos','🛡️ Garita','🧱 Muro perimetral','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje y planta de tratamiento'],
+    gallery:[],docs:[],priceNote:'Aquí mostramos los precios cargados. Para una cuota exacta según plazo, solicítela por WhatsApp.',quoteMode:'contact'
+  },
+  vista:{
+    label:'Vista Hermosa',tag:'📍 Retalhuleu · CA-2 km 188',price:'Q83,200',sub:'Terrenos sobre la CA-2, cerca de Metroplaza y de los parques del IRTRA.',image:null,
+    location:'CA-2 km 188, Retalhuleu.',map:'https://maps.app.goo.gl/DCckHh97SMMPiLFS9',refs:['Aproximadamente 7 min de Metroplaza','Aproximadamente 15 min del IRTRA','Ubicación sobre la CA-2'],
+    products:[{name:'Lote 8x16 m · fase desde',price:83200,down:6000,terms:null}],
+    facts:[['📐','Medida','8x16 m'],['💵','Enganche','Q6,000'],['🏦','Financiamiento','Propio'],['🏊','Amenidad','Piscina'],['🌳','Entorno','Áreas verdes'],['🗓️','Plazo','1 a 8 años']],
+    amenities:['🏊 Piscina','🌳 Áreas verdes','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje'],gallery:[],docs:[],priceNote:'Precio referencial cargado para esta beta. Solicite una cuota exacta por WhatsApp.',quoteMode:'contact'
+  }
+};
+let current='palmeras';
+const money=n=>'Q'+Number(n).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2});
+const wa=text=>'https://wa.me/'+phone+'?text='+encodeURIComponent(text);
+function renderChips(){document.getElementById('projectChips').innerHTML=Object.entries(projects).map(([k,p])=>`<button class="chip ${k===current?'active':''}" onclick="selectProject('${k}')">${p.label}</button>`).join('')}
+function selectProject(k){current=k;location.hash=k;render();window.scrollTo({top:0,behavior:'smooth'})}
+function render(){const p=projects[current];renderChips();document.title=p.label+' | Gabriel Polero';
+ document.getElementById('heroTag').textContent=p.tag;document.getElementById('heroName').textContent=p.label;document.getElementById('heroSub').textContent=p.sub;document.getElementById('heroPrice').textContent=p.price;
+ const hero=document.getElementById('heroMedia');hero.style.background=current==='palmeras'?'radial-gradient(circle at 70% 20%,#5f9c78,#245c4c 38%,#0d3b35 78%)':current==='buenaventura'?'radial-gradient(circle at 70% 20%,#9aaa55,#4e7543 38%,#173d35 78%)':'radial-gradient(circle at 75% 20%,#75a9a0,#2d655d 35%,#143b36 78%)';document.getElementById('artLabel').textContent='Vista conceptual · '+p.label;
+ document.getElementById('priceIntro').textContent=p.priceNote;document.getElementById('facts').innerHTML=p.facts.map(x=>`<div class="card"><div style="font-size:27px">${x[0]}</div><h3 style="margin:10px 0 2px">${x[1]}</h3><div class="muted">${x[2]}</div></div>`).join('');
+ document.getElementById('amenities').innerHTML=p.amenities.map(x=>`<div class="amenity">${x}</div>`).join('');
+ renderGallery(p);document.getElementById('locationTitle').textContent=p.label;document.getElementById('locationText').textContent=p.location;document.getElementById('mapLink').href=p.map;document.getElementById('references').innerHTML=p.refs.map((x,i)=>`<div class="stat"><span>${i===0?'📍':i===1?'🚗':'🛣️'} ${x}</span><b>✓</b></div>`).join('');
+ document.getElementById('docs').innerHTML=`<button class="doc" style="text-align:left;cursor:pointer" onclick="window.print()"><div class="doc-icon">📄</div><div><b>Guardar ficha como PDF</b><small>Use la opción de impresión del navegador para guardar esta página en PDF.</small></div></button><a class="doc" href="${wa('Hola Gabriel, quiero una cotización personalizada de '+p.label+'.')}" target="_blank"><div class="doc-icon">💰</div><div><b>Solicitar cotización</b><small>Abra WhatsApp con el mensaje listo para enviar.</small></div></a>`;
+ document.getElementById('productSelect').innerHTML=p.products.map((x,i)=>`<option value="${i}">${x.name} · ${money(x.price)}</option>`).join('');updateTerms();updateQuote();
+ const base=`Hola Gabriel, vi la información de ${p.label} en su página y quiero más información.`;['topWa','bottomWa','floatWa'].forEach(id=>document.getElementById(id).href=wa(base));document.getElementById('visitProject').textContent=p.label;
+}
+function renderGallery(p){const g=document.getElementById('gallery');g.innerHTML=`<div class="card" style="grid-column:1/-1;padding:0;overflow:hidden"><div style="display:grid;grid-template-columns:1.15fr .85fr;min-height:300px"><div style="background:linear-gradient(145deg,#1b5b50,#0d3b35);display:grid;place-items:center;color:#fff;text-align:center;padding:24px"><div><div style="font-size:46px">🏞️</div><h3>Foto aérea del proyecto</h3><p style="color:rgba(255,255,255,.72)">Aquí colocaremos una fotografía real de ${p.label}.</p></div></div><div style="display:grid;grid-template-rows:1fr 1fr"><div style="background:#eaf3f0;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🏊</div><b>Amenidades</b></div></div><div style="background:#f4efe2;display:grid;place-items:center;text-align:center;padding:20px"><div><div style="font-size:36px">🎥</div><b>Video / recorrido</b></div></div></div></div></div>`}
+function updateTerms(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0],sel=document.getElementById('termSelect');if(prod.terms){sel.disabled=false;sel.innerHTML=Object.keys(prod.terms).map(t=>`<option>${t}</option>`).join('');sel.value=Object.keys(prod.terms).at(-1)}else{sel.disabled=true;sel.innerHTML='<option>Solicitar cuota exacta</option>'}}
+function updateQuote(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0];if(!prod)return; if(document.getElementById('productSelect').dataset.last!==String(document.getElementById('productSelect').value)){document.getElementById('productSelect').dataset.last=document.getElementById('productSelect').value;updateTerms()}
+ const term=document.getElementById('termSelect').value;document.getElementById('quotePrice').textContent=money(prod.price);document.getElementById('quoteDown').textContent=money(prod.down);document.getElementById('quoteTerm').textContent=prod.terms?term:'Por definir';
+ if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`)}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`)} }
+document.getElementById('productSelect').addEventListener('change',()=>{document.getElementById('productSelect').dataset.last='';updateQuote()});
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function askAvailability(){const p=projects[current];window.open(wa(`Hola Gabriel, quiero conocer los lotes disponibles actualmente en ${p.label}. Lo estoy considerando para: `),'_blank')}
+function openVisit(){document.getElementById('visitModal').classList.add('open')}function closeVisit(){document.getElementById('visitModal').classList.remove('open')}
+function sendVisit(){const p=projects[current],n=document.getElementById('visitorName').value.trim()||'Cliente',d=document.getElementById('visitDate').value||'día por coordinar',t=document.getElementById('visitTime').value,u=document.getElementById('visitUse').value;window.open(wa(`Hola Gabriel, soy ${n}. Quiero agendar una visita a ${p.label}. Fecha: ${d}. Horario: ${t}. Lo estoy buscando para ${u}.`),'_blank');closeVisit()}
+function sharePage(){const p=projects[current],url=location.href.split('#')[0]+'#'+current;if(navigator.share){navigator.share({title:p.label,text:`Conozca ${p.label}`,url})}else{navigator.clipboard.writeText(url);alert('Enlace copiado') }}
+document.getElementById('visitModal').addEventListener('click',e=>{if(e.target.id==='visitModal')closeVisit()});
+const initial=location.hash.replace('#','');if(projects[initial])current=initial;render();
+</script>
+</body>
+</html>
