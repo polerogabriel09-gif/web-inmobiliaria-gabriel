@@ -307,6 +307,79 @@ body.dark .footer-row{border-color:var(--line)}
   }
 }
 
+
+/* ===== AJUSTE FINAL LOGOS ===== */
+.btn-whatsapp{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+}
+.btn-whatsapp .wa-icon{
+  width:22px!important;
+  height:22px!important;
+  object-fit:contain!important;
+  flex:0 0 22px!important;
+  display:block!important;
+}
+.btn-whatsapp span{
+  display:inline!important;
+}
+.floating{
+  padding:8px!important;
+  background:#1dbf73!important;
+}
+.floating img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  display:block!important;
+}
+.hero-media .logo-mini{
+  width:190px!important;
+  max-width:42%!important;
+  padding:8px!important;
+  background:rgba(5,12,11,.48)!important;
+}
+.hero-media .logo-mini img{
+  width:100%!important;
+  height:auto!important;
+  padding:0!important;
+  background:transparent!important;
+  object-fit:contain!important;
+  display:block!important;
+}
+@media(max-width:640px){
+  .btn-whatsapp .wa-icon{
+    width:20px!important;
+    height:20px!important;
+    flex-basis:20px!important;
+  }
+  .hero-media .logo-mini{
+    width:125px!important;
+    padding:6px!important;
+  }
+}
+
+
+/* ===== PROMOCIONES BUENAVENTURA ===== */
+.quote-promo-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:8px;
+  background:linear-gradient(135deg,#ff7a18,#ff3d00);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.02em;
+  box-shadow:0 8px 20px rgba(255,92,20,.22);
+}
+.quote-promo-badge.hidden{display:none!important}
+#productSelect option{font-weight:700}
+
 </style>
 </head>
 <body class="dark">
@@ -315,7 +388,7 @@ body.dark .footer-row{border-color:var(--line)}
     <div class="brand"><div class="mark">GP</div><span>Gabriel Polero<small>Asesor inmobiliario</small></span></div>
     <div class="nav-actions">
       <button class="btn btn-ghost" onclick="sharePage()">↗ Compartir</button>
-      <a class="btn btn-whatsapp" id="topWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'top'})"><img class="wa-logo-text" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">WhatsApp</span></a>
+      <a class="btn btn-whatsapp" id="topWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'top'})"><img class="wa-icon" src="assets/branding/whatsapp-icon.png?v=5" alt=""><span>WhatsApp</span></a>
     </div>
   </div>
   <div class="wrap project-switcher"><div class="chips" id="projectChips"></div></div>
@@ -370,6 +443,7 @@ body.dark .footer-row{border-color:var(--line)}
       <div class="notice" id="quoteNotice">Las cuotas son informativas y deben confirmarse según disponibilidad y condiciones vigentes.</div>
     </div>
     <div class="quote">
+      <div id="quotePromoBadge" class="quote-promo-badge hidden">🔥 PROMOCIÓN</div>
       <small id="quoteLabel">Cuota mensual aproximada</small>
       <div class="amount" id="quoteAmount">Q1,170.60</div>
       <div class="quote-row"><span>Precio</span><b id="quotePrice">Q67,200</b></div>
@@ -426,15 +500,15 @@ body.dark .footer-row{border-color:var(--line)}
 
 <section class="section"><div class="wrap"><div class="cta">
   <div><h2>¿Quiere conocer un lote?</h2><p>Le atiendo por WhatsApp y coordinamos una visita al proyecto.</p></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'bottom'})"><img class="wa-logo-text bottom-wa-logo" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">Hablar con Gabriel</span></a></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" style="background:#fff;color:var(--brand)" onclick="openVisit()">📅 Agendar visita</button><a class="btn btn-whatsapp" id="bottomWa" target="_blank" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'bottom'})"><img class="wa-icon" src="assets/branding/whatsapp-icon.png?v=5" alt=""><span>Hablar con Gabriel</span></a></div>
 </div></div></section>
 </main>
 
 <footer class="footer"><div class="wrap footer-row"><div><b>Gabriel Polero</b><br>Asesor inmobiliario</div><div>📞 +502 3616 0954<br><span>Información sujeta a disponibilidad y condiciones vigentes</span></div></div></footer>
-<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'floating'})"><img src="assets/branding/whatsapp-logo-float.png" alt="WhatsApp"></a>
+<a class="floating" id="floatWa" target="_blank" aria-label="WhatsApp" onclick="trackEvent('whatsapp_click',{project:projects[current].label,placement:'floating'})"><img src="assets/branding/whatsapp-icon.png?v=5" alt="WhatsApp"></a>
 <div class="whatsapp-nudge" id="waNudge">¿Tiene dudas? Escríbame por WhatsApp</div>
 <div class="mobile-actions">
-  <a class="btn btn-whatsapp" id="mobileWa" target="_blank"><img class="wa-logo-text" src="assets/branding/whatsapp-logo-horizontal.png" alt="WhatsApp"><span class="wa-label">WhatsApp</span></a>
+  <a class="btn btn-whatsapp" id="mobileWa" target="_blank"><img class="wa-icon" src="assets/branding/whatsapp-icon.png?v=5" alt=""><span>WhatsApp</span></a>
   <button class="btn btn-primary" onclick="openVisit()">📅 Visita</button>
 </div>
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
@@ -453,7 +527,7 @@ body.dark .footer-row{border-color:var(--line)}
     <div class="field full"><label>¿Qué busca?</label><select id="visitUse"><option>Construir mi casa</option><option>Hacer locales</option><option>Patrimonio / inversión</option><option>Aún estoy evaluando</option></select></div>
   </div>
   <div class="notice">Al continuar se abrirá WhatsApp con el mensaje listo. Usted decide si lo envía.</div>
-  <button class="btn btn-whatsapp" style="width:100%;margin-top:16px" onclick="sendVisit()">Continuar por WhatsApp</button>
+  <button class="btn btn-whatsapp" style="width:100%;margin-top:16px" onclick="sendVisit()"><img class="wa-icon" src="assets/branding/whatsapp-icon.png?v=5" alt="">Continuar por WhatsApp</button>
 </div></div>
 
 <script>
@@ -512,7 +586,7 @@ const projects={
   palmeras:{
     label:'Palmeras San Miguel',tag:'🏡 Retalhuleu · Zona 5',price:'Q67,200',sub:'Terrenos en Retalhuleu con financiamiento propio, escrituras registradas y espacios para disfrutar en familia.',
     hero:'assets/palmeras/img/palmeras-portada.png',
-    logo:'assets/branding/palmeras-logo-transparente.png',
+    logo:'assets/branding/palmeras-logo.png?v=5',
     location:'Zona 5, camino a La Verde, Retalhuleu.',map:'https://maps.app.goo.gl/pBUyn98n8NCkGW8o6',mapEmbed:'https://www.google.com/maps?q=Palmeras+San+Miguel,+Zona+5,+camino+a+La+Verde,+Retalhuleu,+Guatemala&output=embed',refs:['A pocos minutos del Centro Comercial La Trinidad','Aproximadamente 30 min del IRTRA','Acceso por camino a La Verde'],
     products:[
       {name:'Primera fase · 8x16 m',price:67200,down:6000,terms:{'11 meses':5563.64,'2 años':3026.26,'3 años':2181.31,'4 años':1766.17,'5 años':1521.20,'6 años':1361.30,'7 años':1251.28,'8 años':1170.60}},
@@ -549,12 +623,145 @@ const projects={
     priceNote:'Seleccione una fase y plazo para ver la cuota exacta cargada en el catálogo.',quoteMode:'exact'
   },
   buenaventura:{
-    label:'Buenaventura Cuyotenango',tag:'🌴 Cuyotenango · km 168',price:'Q83,200',sub:'Proyecto urbanizado camino hacia Tulate, con amenidades familiares y financiamiento propio.',image:null,
-    location:'Km 168 de la carretera que se dirige hacia la playa de Tulate, Cuyotenango.',map:'https://maps.app.goo.gl/4wTj52Ez32rdigXk8',mapEmbed:'https://www.google.com/maps?q=km+168+carretera+hacia+Tulate,+Cuyotenango,+Guatemala&output=embed',refs:['A 2 min del centro de Cuyotenango','Aproximadamente 15 min de los parques del IRTRA','Sobre la ruta hacia Tulate'],
-    products:[{name:'Lote 8x16 m',price:83200,down:6000,terms:null},{name:'Lote 8x18 m',price:93600,down:6000,terms:null}],
-    facts:[['📐','Medidas','8x16 · 8x18 y más'],['💵','Enganche','Q6,000'],['🏦','Financiamiento','Propio'],['📜','Escritura','Desmembrada'],['🏗️','Construcción','Diseño libre'],['🗓️','Plazo','2 a 8 años']],
-    amenities:['🏊 Piscinas','🏡 Casa club','🌳 Áreas verdes','🛝 Juegos para niños','🚶 Caminamientos','🛡️ Garita','🧱 Muro perimetral','🛣️ Calles pavimentadas','💧 Agua potable','⚡ Energía eléctrica','♻️ Drenaje y planta de tratamiento'],
-    gallery:[],videos:[],renders:[],docs:[],priceNote:'Aquí mostramos los precios cargados. Para una cuota exacta según plazo, solicítela por WhatsApp.',quoteMode:'contact'
+    label:'Buenaventura Cuyotenango',
+    tag:'🌴 Cuyotenango · km 168',
+    price:'Q83,200',
+    sub:'Terrenos urbanizados camino hacia Tulate, con financiamiento propio, diferentes medidas y promociones disponibles.',
+    hero:'assets/buenaventura/img/buenaventura-8.jpg',
+    heroBadge:'VISUALIZACIÓN DEL PROYECTO',
+    logo:'assets/buenaventura/img/buenaventura-logo.png',
+    location:'Km 168 de la carretera que se dirige hacia la playa de Tulate, Cuyotenango.',
+    map:'https://maps.app.goo.gl/4wTj52Ez32rdigXk8',
+    mapEmbed:'https://www.google.com/maps?q=km+168+carretera+hacia+Tulate,+Cuyotenango,+Guatemala&output=embed',
+    refs:[
+      'A 2 min del centro de Cuyotenango',
+      'Aproximadamente 15 min de los parques del IRTRA',
+      'Sobre la ruta hacia Tulate'
+    ],
+    products:[
+      {
+        name:'🔥 PROMOCIÓN · 8x16 m',
+        promo:true,
+        price:83200,
+        down:6000,
+        terms:{
+          '1 año':7040.85,
+          '2 años':3817.44,
+          '3 años':2751.59,
+          '4 años':2227.92,
+          '5 años':1918.90,
+          '6 años':1717.20,
+          '7 años':1578.42,
+          '8 años':1476.64
+        }
+      },
+      {
+        name:'🔥 PROMOCIÓN · 8x18 m',
+        promo:true,
+        price:93600,
+        down:8000,
+        terms:{
+          '1 año':7806.95,
+          '2 años':4232.81,
+          '3 años':3050.99,
+          '4 años':2470.34,
+          '5 años':2127.69,
+          '6 años':1904.05,
+          '7 años':1750.16,
+          '8 años':1637.32
+        }
+      },
+      {
+        name:'🔥 PROMOCIÓN · 9x20 m',
+        promo:true,
+        price:117000,
+        down:10000,
+        terms:{
+          '1 año':9758.69,
+          '2 años':5291.01,
+          '3 años':3813.73,
+          '4 años':3087.92,
+          '5 años':2659.61,
+          '6 años':2380.06,
+          '7 años':2187.70,
+          '8 años':2046.64
+        }
+      },
+      {
+        name:'8x16 m · Precio regular',
+        promo:false,
+        price:99200,
+        down:6000,
+        terms:{
+          '1 año':8500.09,
+          '2 años':4608.62,
+          '3 años':3321.87,
+          '4 años':2689.66,
+          '5 años':2316.60,
+          '6 años':2073.10,
+          '7 años':1905.55,
+          '8 años':1782.68
+        }
+      },
+      {
+        name:'10x18 m · Precio regular',
+        promo:false,
+        price:180000,
+        down:15000,
+        terms:{
+          '1 año':15049,
+          '2 años':8158,
+          '3 años':5883,
+          '4 años':4761,
+          '5 años':4101,
+          '6 años':3671,
+          '7 años':3372,
+          '8 años':3155
+        }
+      }
+    ],
+    facts:[
+      ['📐','Medidas','8x16 · 8x18 · 9x20 · 10x18'],
+      ['🔥','Promociones','En medidas seleccionadas'],
+      ['🏦','Financiamiento','Propio'],
+      ['📜','Escritura','Desmembrada'],
+      ['🏗️','Construcción','Diseño libre'],
+      ['🗓️','Plazo','1 a 8 años']
+    ],
+    amenities:[
+      '🏊 Piscinas',
+      '🏡 Casa club',
+      '🌳 Áreas verdes',
+      '🛝 Juegos para niños',
+      '🚶 Caminamientos',
+      '🛡️ Garita',
+      '🧱 Muro perimetral',
+      '🛣️ Calles pavimentadas',
+      '💧 Agua potable',
+      '⚡ Energía eléctrica',
+      '♻️ Drenaje y planta de tratamiento'
+    ],
+    gallery:[
+      {src:'assets/buenaventura/img/buenaventura-8.jpg',caption:'Acceso y entorno del proyecto'},
+      {src:'assets/buenaventura/img/buenaventura-4.jpg',caption:'Garita de ingreso'},
+      {src:'assets/buenaventura/img/buenaventura-3.jpg',caption:'Acceso principal'},
+      {src:'assets/buenaventura/img/buenaventura-2.jpg',caption:'Vista general de la urbanización'},
+      {src:'assets/buenaventura/img/buenaventura-1.jpg',caption:'Distribución aérea de lotes'},
+      {src:'assets/buenaventura/img/buenaventura-7.jpg',caption:'Vista aérea del proyecto'},
+      {src:'assets/buenaventura/img/buenaventura-9.jpg',caption:'Distribución de calles y terrenos'},
+      {src:'assets/buenaventura/img/buenaventura-5.jpg',caption:'Ingreso a Buenaventura'},
+      {src:'assets/buenaventura/img/buenaventura-6.jpg',caption:'Vista frontal del proyecto'}
+    ],
+    videos:[
+      {src:'assets/buenaventura/video/buenaventura-video-1.mp4',title:'Recorrido Buenaventura',caption:'Conozca el proyecto en video.'},
+      {src:'assets/buenaventura/video/buenaventura-video-2.mp4',title:'Vista del proyecto',caption:'Recorrido y entorno de Buenaventura.'},
+      {src:'assets/buenaventura/video/buenaventura-video-3.mp4',title:'Buenaventura Cuyotenango',caption:'Material visual del proyecto.'},
+      {src:'assets/buenaventura/video/buenaventura-amenidades.mp4',title:'Amenidades',caption:'Conozca los espacios y amenidades.'}
+    ],
+    renders:[],
+    docs:[],
+    priceNote:'🔥 Hay promociones vigentes en medidas seleccionadas. Elija una medida y luego el plazo para ver la cuota correspondiente.',
+    quoteMode:'exact'
   },
   vista:{
     label:'Vista Hermosa',tag:'📍 Retalhuleu · CA-2 km 188',price:'Q83,200',sub:'Terrenos sobre la CA-2, cerca de Metroplaza y de los parques del IRTRA.',image:null,
@@ -575,7 +782,7 @@ function render(){const p=projects[current];renderChips();document.title=p.label
  if(p.hero){
    hero.classList.add('has-photo');
    hero.style.background=`linear-gradient(90deg,rgba(7,25,22,.10),rgba(7,25,22,.05)),url('${p.hero}') center/cover no-repeat`;
-   heroBadge.textContent='FOTOS REALES';
+   heroBadge.textContent=p.heroBadge||'FOTOS REALES';
    if(p.logo){heroLogo.querySelector('img').src=p.logo;heroLogo.querySelector('img').alt='Logo '+p.label;heroLogo.style.display='block'}else{heroLogo.style.display='none'}
  }else{
    hero.classList.remove('has-photo');
@@ -585,7 +792,7 @@ function render(){const p=projects[current];renderChips();document.title=p.label
  }
  document.getElementById('artLabel').textContent='Vista conceptual · '+p.label;
  document.getElementById('priceIntro').textContent=p.priceNote;document.getElementById('facts').innerHTML=p.facts.map(x=>`<div class="card"><div style="font-size:27px">${x[0]}</div><h3 style="margin:10px 0 2px">${x[1]}</h3><div class="muted">${x[2]}</div></div>`).join('');
- document.getElementById('amenityIntro').textContent=current==='palmeras'?'Amenidades y servicios mostrados con material real del proyecto.':'Espacios y servicios incluidos en el proyecto.';document.getElementById('amenities').innerHTML=p.amenities.map(x=>`<div class="amenity">${x}</div>`).join('');
+ document.getElementById('amenityIntro').textContent=current==='palmeras'?'Amenidades y servicios mostrados con material real del proyecto.':current==='buenaventura'?'Amenidades, servicios y espacios contemplados para Buenaventura Cuyotenango.':'Espacios y servicios incluidos en el proyecto.';document.getElementById('amenities').innerHTML=p.amenities.map(x=>`<div class="amenity">${x}</div>`).join('');
  renderGallery(p);renderPlanos(p);document.getElementById('locationTitle').textContent=p.label;document.getElementById('locationText').textContent=p.location;document.getElementById('mapLink').href=p.map;document.getElementById('mapFrame').src=p.mapEmbed||('https://www.google.com/maps?q='+encodeURIComponent(p.location+', Guatemala')+'&output=embed');document.getElementById('references').innerHTML=p.refs.map((x,i)=>`<div class="stat"><span>${i===0?'📍':i===1?'🚗':'🛣️'} ${x}</span><b>✓</b></div>`).join('');
  const docs=[...(p.docs||[])];
  document.getElementById('docs').innerHTML=docs.map(d=>`<a class="doc" href="${d.href}" target="_blank"><div class="doc-icon">🗺️</div><div><b>${d.title}</b><small>${d.text}</small></div></a>`).join('')+`<button class="doc" style="text-align:left;cursor:pointer" onclick="window.print()"><div class="doc-icon">📄</div><div><b>Guardar ficha como PDF</b><small>Use la opción de impresión del navegador para guardar esta página en PDF.</small></div></button><a class="doc" href="${wa('Hola Gabriel, quiero una cotización personalizada de '+p.label+'.')}" target="_blank"><div class="doc-icon">💰</div><div><b>Solicitar cotización</b><small>Abra WhatsApp con el mensaje listo para enviar.</small></div></a>`;
@@ -623,7 +830,8 @@ function renderVideosAndRenders(p){
 function updateTerms(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0],sel=document.getElementById('termSelect');if(prod.terms){sel.disabled=false;sel.innerHTML=Object.keys(prod.terms).map(t=>`<option>${t}</option>`).join('');sel.value=Object.keys(prod.terms).at(-1)}else{sel.disabled=true;sel.innerHTML='<option>Solicitar cuota exacta</option>'}}
 function updateQuote(){const p=projects[current],prod=p.products[+document.getElementById('productSelect').value||0];if(!prod)return; if(document.getElementById('productSelect').dataset.last!==String(document.getElementById('productSelect').value)){document.getElementById('productSelect').dataset.last=document.getElementById('productSelect').value;updateTerms()}
  const term=document.getElementById('termSelect').value;document.getElementById('quotePrice').textContent=money(prod.price);document.getElementById('quoteDown').textContent=money(prod.down);document.getElementById('quoteTerm').textContent=prod.terms?term:'Por definir';
- if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}.`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name,term,amount:prod.terms[term]});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)} }
+ const promoBadge=document.getElementById('quotePromoBadge');if(prod.promo){promoBadge.classList.remove('hidden');document.getElementById('quoteNotice').textContent='🔥 Esta medida está marcada con precio promocional. Confirme disponibilidad y condiciones vigentes.'}else{promoBadge.classList.add('hidden');document.getElementById('quoteNotice').textContent='Precio regular. La cuota mostrada corresponde al plazo seleccionado y debe confirmarse según disponibilidad vigente.'}
+ if(prod.terms){document.getElementById('quoteLabel').textContent='Cuota mensual';document.getElementById('quoteAmount').textContent=money(prod.terms[term]);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}. Quisiera información de ${prod.name}, a ${term}. Vi una cuota de ${money(prod.terms[term])}. ${prod.promo?'Vi que aparece como promoción.':''}`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name,term,amount:prod.terms[term]});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)}else{document.getElementById('quoteLabel').textContent='Precio del lote';document.getElementById('quoteAmount').textContent=money(prod.price);document.getElementById('quoteWa').href=wa(`Hola Gabriel, me interesa ${p.label}, específicamente ${prod.name}. ¿Me comparte la cuota según plazo?`);document.getElementById('quoteWa').onclick=()=>trackEvent('quote_whatsapp',{project:p.label,product:prod.name});const qa=document.getElementById('quoteAmount');qa.classList.remove('quote-pop');requestAnimationFrame(()=>qa.classList.add('quote-pop'));setTimeout(()=>qa.classList.remove('quote-pop'),260)} }
 document.getElementById('productSelect').addEventListener('change',()=>{document.getElementById('productSelect').dataset.last='';updateQuote()});
 function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function askAvailability(){const p=projects[current];trackEvent('availability_click',{project:p.label});window.open(wa(`Hola Gabriel, quiero conocer los lotes disponibles actualmente en ${p.label}. Lo estoy considerando para: `),'_blank')}
